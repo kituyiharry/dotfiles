@@ -9,5 +9,5 @@ My dev workflow configurations
 ## Vim with tmux
 
 ![vim-tmux](desk-6-code.png "Vim with tmux")
-![vim-tmux](desk-5-coding.png, "Vim with tmux")
+![vim-tmux](desk-5-coding.png "Vim with tmux")
 ![vim-tmux](desk-7-float-wins.png "Vim with tmux")
