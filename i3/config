@@ -208,7 +208,7 @@ bindsym $mod+b exec "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true rofi -show dr
 #---( direct launchers )---#
 
 bindsym $mod+Return exec "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true alacritty -e tmux"
-bindsym $mod+backslash exec "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true konsole"
+bindsym $mod+backslash exec "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true konsole -e tmux"
 #bindsym $mod+Shift+Return exec "emacsclient -c"
 #bindsym $mod+Shift+F7 exec --no-startup-id "nitrogen --restore"
 #bindsym $mod+Shift+F1 exec "thunderbird"

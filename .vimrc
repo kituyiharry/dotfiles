@@ -672,6 +672,7 @@ let g:vista_executive_for = {
   \ 'rust': 'ctags',
   \ 'vim': 'ctags',
   \ 'c': 'coc',
+  \ 'markdown': 'ctags',
   \ 'elixir': 'coc'
   \ }
 
