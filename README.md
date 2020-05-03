@@ -2,6 +2,8 @@
 
 My dev workflow configurations
 
+[Blog Post](http://blog.harryk.dev)
+
 ## I3 - WM choice
 
 ![I3](desk-1.png "i3 window manager")
