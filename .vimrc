@@ -83,6 +83,11 @@ Plugin 'google/vim-maktaba'
 Plugin 'cespare/vim-toml'
 Plugin 'elixir-editors/vim-elixir'
 
+""""""""""""""""""""
+"  Database Stuff  "
+""""""""""""""""""""
+Plugin 'tpope/vim-dadbod'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -100,7 +105,7 @@ filetype plugin indent on    " required
 "
 "nvim from vim
 if has("nvim")
-    let g:vimtex_compiler_progname = 'nvr'
+    "let g:vimtex_compiler_progname = 'nvr'
 	let g:powerline_loaded=1
 	let g:powerline_pycmd="py3"
 	set rtp^=/usr/share/vim/vimfiles/
@@ -119,7 +124,7 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 hi Conceal ctermbg=none
 
-setlocal spell
+"setlocal spell
 set spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 "TODO: Load plugins here (pathogen or vundle)
@@ -154,6 +159,7 @@ set ruler
 
 " Blink cursor on error instead of beeping (grr)
 set visualbell
+set belloff=all
 
 " Encoding
 set encoding=utf-8
@@ -267,7 +273,8 @@ set cursorline
 
 "aurora grayscale minimalist vice
 "let g:airline_theme='fruit_punch'
-let g:airline_theme='base16_gruvbox_dark_hard'
+"let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -405,14 +412,14 @@ augroup END
 "let g:ale_linter_aliases = {'vue': ['css', 'javascript']}
 "" Set this setting in vimrc if you want to fix files automatically on save.
 "" This is off by default.
-""set completeopt=menu,menuone,preview,noselect,noinsert "prevent insertion bug
-""let g:ale_completion_enabled = 1
+"set completeopt=menu,menuone,preview,noselect,noinsert "prevent insertion bug
+let g:ale_completion_enabled = 0
 "let g:ale_fix_on_save = 1
 "let g:ale_sign_column_always = 0
 let g:ale_sign_error = '!'
 let g:ale_sign_warning = ''
 "let g:ale_set_highlights = 0
-let g:airline#extensions#ale#enabled = 1
+"let g:airline#extensions#ale#enabled = 0
 let g:ale_lint_on_enter = 0
 "let g:ale_open_list = 0
 "let g:ale_set_quickfix = 1
@@ -703,4 +710,11 @@ map <silent> <C-v> :Vista!!<CR>
 "                             Terminal integration                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-map <silent> <C-t> :belowright term bash<CR>
+map <silent> <C-t> :belowright term<CR>
+
+""""""""""""""""""
+"  Vim markdown  "
+""""""""""""""""""
+"Disable weird underscore highlighting
+"syn match markdownIgnore "\$x_i\$"
+hi link markdownError Normal
