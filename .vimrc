@@ -238,6 +238,19 @@ set foldlevel=2
 set listchars=tab:│\ ,trail:-
 "let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " Uncomment this to enable by default:
+"
+"Split characters
+" GUI
+hi LineNr guibg=bg
+set foldcolumn=2
+hi foldcolumn guibg=bg
+hi VertSplit guibg=bg guifg=bg
+
+" Vim
+" remove | characters in the split
+" use this one instead and hide highlights after
+set fillchars+=vert:\│
+
 set list " To enable by default
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
@@ -254,10 +267,11 @@ let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
 " put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
 " in ~/.vim/colors/ and uncomment:
-"colorscheme zellner
-"colorscheme elflord
 colorscheme gruvbox
+"colorscheme elflord
+"colorscheme gruvbox
 hi Normal ctermbg=none
+hi VertSplit ctermbg=NONE
 
 "Make vim load html syntax in handlebars
 "au BufReadPost *.handlebars set syntax=html
@@ -436,8 +450,8 @@ let g:ale_echo_msg_format = '%severity% [%linter%]: %s'
 "let g:ale_fixers.vue = ['eslint']
 "let g:ale_fixers.cpp = ['clangtidy']
 "let g:ale_fix_on_save = 1
-"highlight clear ALEErrorSign
-"highlight clear ALEWarningSign
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
 "let g:ale_linters={
 			"\'rust': ['cargo', 'rust-analyzer'], 
 			"\'javascript': ['tsserver', 'eslint'], 
@@ -718,3 +732,35 @@ map <silent> <C-t> :belowright term<CR>
 "Disable weird underscore highlighting
 "syn match markdownIgnore "\$x_i\$"
 hi link markdownError Normal
+
+function FindCursorPopUp()
+	let radius = get(a:000, 0, 2)
+	let srow = screenrow()
+	let scol = screencol()
+	" it's necessary to test entire rect, as some popup might be quite small
+	for r in range(srow - radius, srow + radius)
+		for c in range(scol - radius, scol + radius)
+			let winid = popup_locate(r, c)
+			if winid != 0
+				return winid
+			endif
+		endfor
+	endfor
+
+	return 0
+endfunction
+
+function ScrollPopUp(down)
+	let winid = FindCursorPopUp()
+	if winid == 0
+		return 0
+	endif
+
+	let pp = popup_getpos(winid)
+	call popup_setoptions( winid,
+				\ {'firstline' : pp.firstline + ( a:down ? 1 : -1 ) } )
+
+	return 1
+endfunction
+nnoremap <expr> <c-d> ScrollPopUp(1) ? '<esc>' : '<c-d>'
+nnoremap <expr> <c-a> ScrollPopUp(0) ? '<esc>' : '<c-a>'

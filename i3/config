@@ -14,7 +14,8 @@ set $mod Mod4
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:System San Francisco Display 11
+#font pango:System San Francisco Display 11
+font pango:URW Gothic, Regular Display 11
 
 
 #Gaps
@@ -275,9 +276,11 @@ workspace_auto_back_and_forth yes
 #---( startup items )---#
 
 #exec_always --no-startup-id feh --bg-scale /usr/share/wallpapers/Grey/contents/images/1680x1050.jpg
-exec_always --no-startup-id feh --bg-scale ~/Pictures/city.png
+#exec_always --no-startup-id "feh --geometry 1366 x 768 --bg-scale ~/Pictures/abstract-machine.jpg"
+exec_always --no-startup-id "feh --geometry 1366 x 768 --bg-scale ~/Pictures/bsolife-dark.png"
 #exec --no-startup-id "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true compton --backend glx"
-exec --no-startup-id "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true ~/Programmes/Xtools/compton-kawase-blur/compton --backend glx"
+#exec --no-startup-id "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true ~/Programmes/Xtools/compton-kawase-blur/compton --backend glx"
+exec --no-startup-id "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true picom --detect-rounded-corners --detect-client-opacity --detect-transient --backend glx -c -C -o .707 -b"
 #exec --no-startup-id "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true xcompmgr"
 exec --no-startup-id "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true kstart5 plasmashell"
 exec --no-startup-id "XDG_CURRENT_DESKTOP=kde KDE_FULL_SESSION=true latte-dock"
@@ -382,10 +385,10 @@ for_window [class="plasmashell"] floating enable, border none
 #for_window [title="Desktop - Plasma"] floating enable; border none
 for_window [class="cantata"] floating enable, border none
 for_window [class="yakuake"] floating enable, border none
-for_window [title="win7"] floating enable, border none
+#for_window [title="win7"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
 for_window [class="Kmix"] floating enable, border none
-for_window [class="Klipper"] floating enable, border none
+#for_window [class="Klipper"] floating enable, border none
 for_window [window_role="dock"] floating enable, border none
 for_window [class="komorebi"] floating enable, border none
 exec --no-startup-id wmctrl -c "Desktop - Plasma"
