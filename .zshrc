@@ -80,6 +80,27 @@ export ZSH="/Users/harrykwakuloba/.oh-my-zsh"
 
 source $ZSH/oh-my-zsh.sh
 
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+export FZF_COMPLETION_TRIGGER='~~'
+
+
+export FZF_COMPLETION_OPTS='+c -x'
+
+
+_fzf_compgen_path() {
+  ag -g "" "$1" | with-dir "$1"
+}
+
+_fzf_compgen_dir() {
+  ag -g "" "$1" | only-dir "$1"
+}
+
+
+# User configuration
+export EDITOR='vim'
+
+# Catkin workspace
+source ~/catkin_ws/devel/setup.zsh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
