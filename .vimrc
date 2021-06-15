@@ -96,6 +96,7 @@ Plugin 'cespare/vim-toml'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'tpope/vim-surround'
 Plugin 'posva/vim-vue'
+Plugin 'jeaye/color_coded'
 
 """"""""""""""""""""
 "  Database Stuff  "
@@ -658,8 +659,9 @@ set shortmess+=c
 "au FileType rust nmap <leader>rx <Plug>(rust-def-vertical)
 "au FileType rust nmap <leader>rd <Plug>(rust-doc)
 "au FileType rust nmap <leader>rr :RustRun<CR>
-"au FileType rust nmap <leader>rs :CocCommand rust-analyzer.syntaxTree<CR>
-"au FileType rust nmap <leader>rg :CocCommand rust-analyzer.collectGarbage<CR>
+au FileType rust nmap <leader>rr :CocCommand rust-analyzer.run<CR>
+au FileType rust nmap <leader>rs :CocCommand rust-analyzer.syntaxTree<CR>
+au FileType rust nmap <leader>rg :CocCommand rust-analyzer.collectGarbage<CR>
 "au FileType rust nmap <leader>rs <Plug>(rust-def-split)
 "au FileType rust nmap <leader>rx <Plug>(rust-def-vertical)
 "au FileType rust nmap <leader>rd <Plug>(rust-doc)
@@ -796,10 +798,10 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 """""""""""
 "  Bazel  "
 """""""""""
-nmap <leader>bb :Bazel build src/build-all<CR>
-nmap <leader>br :Bazel run   src/build-all<CR>
-nmap <leader>bt :Bazel test --test_output all --verbose_failures test/main-test <CR>
-nmap <leader>bc :Bazel clean --async<CR>
+"nmap <leader>bb :Bazel build src/build-all<CR>
+"nmap <leader>br :Bazel run   src/build-all<CR>
+"nmap <leader>bt :Bazel test --test_output all --verbose_failures test/main-test <CR>
+"nmap <leader>bc :Bazel clean --async<CR>
 
 """""""""""""""""""""
 "  Language Server  "
@@ -910,7 +912,7 @@ nnoremap <expr> <c-a> ScrollPopUp(0) ? '<esc>' : '<c-a>'
 "  Predictive Text  "
 """""""""""""""""""""
 
-let g:predictive#dict_path="~/.vim/bundle/vim-predictive/dict_sample/"
+"let g:predictive#dict_path="~/.vim/bundle/vim-predictive/dict_sample/"
 
 """""""""""""""""
 "  Color Coded  "
