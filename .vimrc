@@ -56,6 +56,7 @@ Plugin 'preservim/nerdcommenter'
 Plugin 'liuchengxu/vista.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'wfxr/minimap.vim'
 " if has("nvim")
 "   Plugin 'nvim-lua/popup.nvim'
 "   Plugin 'nvim-lua/plenary.nvim'
@@ -84,6 +85,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'sjl/gundo.vim'
 Plugin 'wincent/terminus'
 "Plugin 'bazelbuild/vim-bazel'
+"Plugin 'mattn/webapi-vim'
 
 """""""""""""""""
 "  Code syntax  "
@@ -96,6 +98,17 @@ Plugin 'cespare/vim-toml'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'tpope/vim-surround'
 Plugin 'posva/vim-vue'
+Plugin 'peterhoeg/vim-qml'
+if has('neovim') != 0
+  " Plugin 'neovim/nvim-lspconfig'
+  " Plugin 'simrat39/rust-tools.nvim'
+
+  " " Optional dependencies
+  " Plugin 'nvim-lua/popup.nvim'
+  " Plugin 'nvim-lua/plenary.nvim'
+  "Plugin 'nvim-telescope/telescope.nvim'
+  Plugin 'jeaye/color_coded'
+endif
 
 """"""""""""""""""""
 "  Database Stuff  "
@@ -128,11 +141,11 @@ autocmd BufRead,BufNewFile *.mli set filetype=ocaml
 "
 "nvim from vim
 if has("nvim")
-    "let g:vimtex_compiler_progname = 'nvr'
-	let g:powerline_loaded=1
-	let g:powerline_pycmd="py3"
-	set rtp^=/usr/share/vim/vimfiles/
-	" let g:powerline_pycmd="py"
+  "let g:vimtex_compiler_progname = 'nvr'
+  let g:powerline_loaded=1
+  let g:powerline_pycmd="py3"
+  set rtp^=/usr/share/vim/vimfiles/
+  " let g:powerline_pycmd="py"
 endif
 let g:powerline_loaded=1
 "set clipboard=unnamedplus
@@ -161,7 +174,7 @@ syntax on
 "filetype plugin indent on
 
 if has('nvim') == 0
-	set ttymouse=xterm2
+  set ttymouse=xterm2
 endif
 set mouse=a
 
@@ -300,7 +313,6 @@ let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
 " put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
 " in ~/.vim/colors/ and uncomment:
-"let g:gruvbox_italic=1
 colorscheme gruvbox
 " Next italics lines may be mac specific
 " Now, to have italicized comments in Vim, add this line to your after you declare your colorscheme:
@@ -331,6 +343,28 @@ nmap <leader>sb :windo set scrollbind!<CR>
 "highlight current column
 set colorcolumn=80
 set cursorline
+
+" https://vi.stackexchange.com/a/13336   
+"
+" When  you are  using another  application  and select  go back  to Vim  by
+" clicking inside Vim's text area, it not only switches application focus to
+" Vim, but it also moves the cursor  to that location. If you don't want the
+" cursor to move, put the following in your vimrc:
+
+"augroup NO_CURSOR_MOVE_ON_FOCUS
+  "au!
+  "au FocusLost * let g:oldmouse=&mouse | set mouse=
+  "au FocusGained * if exists('g:oldmouse') | let &mouse=g:oldmouse | unlet g:oldmouse | endif
+"augroup END
+
+"""""""""""""
+"  Minimap  "
+"""""""""""""
+nmap <leader>mt :MinimapToggle<CR>
+let g:minimap_width = 20
+"let g:minimap_auto_start = 1
+"let g:minimap_auto_start_win_enter = 0
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  Airline                                   "
@@ -376,19 +410,19 @@ let g:UltiSnipsListSnippets="<c-t>"
 "let g:ycm_key_list_select_completion=[]
 "let g:ycm_key_list_previous_completion=[]
 "let g:ycm_semantic_triggers =  {
-			"\   'c' : ['->', '.'],
-			"\   'objc' : ['->', '.'],
-			"\   'ocaml' : ['.', '#'],
-			"\   'cpp,objcpp' : ['->', '.', '::'],
-			"\   'cc' : ['->', '.', '::'],
-			"\   'perl' : ['->'],
-			"\   'php' : ['->', '::'],
-			"\   'cs,java,javascript,d,python3,python,perl6,scala,vb,elixir,go' : ['.'],
-			"\   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-			"\   'ruby' : ['.', '::'],
-			"\   'lua' : ['.', ':'],
-			"\   'erlang' : [':'],
-			"\ }
+      "\   'c' : ['->', '.'],
+      "\   'objc' : ['->', '.'],
+      "\   'ocaml' : ['.', '#'],
+      "\   'cpp,objcpp' : ['->', '.', '::'],
+      "\   'cc' : ['->', '.', '::'],
+      "\   'perl' : ['->'],
+      "\   'php' : ['->', '::'],
+      "\   'cs,java,javascript,d,python3,python,perl6,scala,vb,elixir,go' : ['.'],
+      "\   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
+      "\   'ruby' : ['.', '::'],
+      "\   'lua' : ['.', ':'],
+      "\   'erlang' : [':'],
+      "\ }
 "let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 "let g:ycm_complete_in_comments=0
 "let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
@@ -407,14 +441,14 @@ let g:UltiSnipsListSnippets="<c-t>"
 "let g:ycm_rust_src_path='~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 "let g:racer_cmd='/home/harryk/.cargo/bin/racer'
 "let g:ycm_language_server =
-"\ [
-"\   {
-"\     'name': 'rust',
-"\     'cmdline': ['rust-analyzer'],
-"\     'filetypes': ['rust'],
-"\     'project_root_files': ['Cargo.toml']
-"\   }
-"\ ]
+      "\ [
+      "\   {
+      "\     'name': 'rust',
+      "\     'cmdline': ['rust-analyzer'],
+      "\     'filetypes': ['rust'],
+      "\     'project_root_files': ['Cargo.toml']
+      "\   }
+      "\ ]
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -436,22 +470,22 @@ autocmd BufReadPost,BufNewFile *.vue setlocal filetype=vue
 map <silent> <C-n> :NERDTreeToggle<CR>
 
 function! s:CloseIfOnlyControlWinLeft()
-	if winnr("$") != 1
-		return
-	endif
-	if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-				\ || &buftype == 'quickfix'
-		q
-	endif
+  if winnr("$") != 1
+    return
+  endif
+  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+        \ || &buftype == 'quickfix'
+    q
+  endif
 endfunction
 
 augroup CloseIfOnlyControlWinLeft
-	au!
-	au BufEnter * call s:CloseIfOnlyControlWinLeft()
-	"autocmd bufenter * if (winnr("$") == bufwinnr("__vista__")) | q | endif
-	au BufEnter * if winnr("$") == 1 && vista#sidebar#IsOpen() | execute "normal! :q!\<CR>" | endif
-	au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-	"au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  au!
+  au BufEnter * call s:CloseIfOnlyControlWinLeft()
+  "autocmd bufenter * if (winnr("$") == bufwinnr("__vista__")) | q | endif
+  au BufEnter * if winnr("$") == 1 && vista#sidebar#IsOpen() | execute "normal! :q!\<CR>" | endif
+  au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  "au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -474,9 +508,9 @@ augroup END
 "                        Asynchronous Linting Engine                         "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ale_fixers = {
-			"\   'javascript': ['eslint'],
-			"\   'rust': ['rustfmt'],
-			"\}
+      "\   'javascript': ['eslint'],
+      "\   'rust': ['rustfmt'],
+"\}
 "let g:ale_linter_aliases = {'vue': ['css', 'javascript']}
 "" Set this setting in vimrc if you want to fix files automatically on save.
 "" This is off by default.
@@ -495,7 +529,8 @@ let g:ale_lint_on_enter = 0
 ""nmap <silent> <leader>an <Plug>(ale_next_wrap)
 "nmap <silent> <leader>af <Plug>(ale_fix)
 "nmap <silent> <leader>ad <Plug>(ale_go_to_definition)
-let g:ale_echo_msg_error_str = ''
+"let g:ale_echo_msg_error_str = ''
+let g:ale_echo_msg_error_str = '!'
 let g:ale_echo_msg_warning_str = ''
 let g:ale_echo_msg_format = '%severity% [%linter%]: %s'
 "let g:ale_lint_on_text_changed = 'normal'
@@ -508,30 +543,30 @@ let g:ale_echo_msg_format = '%severity% [%linter%]: %s'
 "highlight ALEWarningSign ctermbg=None
 "highlight clear ALEErrorSign
 "highlight clear ALEWarningSign
-"let g:ale_linters={
-			"\'rust': ['cargo', 'rust-analyzer'], 
-			"\'javascript': ['tsserver', 'eslint'], 
-			"\'vue': ['eslint']
-			"\}
+let g:ale_linters={
+\  'rust': ['cargo', 'analyzer'], 
+\  'javascript': ['tsserver', 'eslint'], 
+\  'vue': ['eslint']
+\}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_pattern_options = {
-			\   '.*\.cc$'  : {'ale_enabled': 0},
-			\   '.*\.cpp$' : {'ale_enabled': 0},
-			\   '.*\.rs$'  : {'ale_enabled': 1},
-			\   '.*\.dart$': {'ale_enabled': 0},
-			\   '.*\.js$'  : {'ale_enabled': 0},
-			\   '.*\.ts$'  : {'ale_enabled': 0},
-			\   '.*\.json$': {'ale_enabled': 0},
-			\   '.*\.ex$'  : {'ale_enabled': 0},
-			\   '.*\.eex$' : {'ale_enabled': 0},
-			\} 
+      \   '.*\.cc$'  : {'ale_enabled': 0},
+      \   '.*\.cpp$' : {'ale_enabled': 0},
+      \   '.*\.rs$'  : {'ale_enabled': 1},
+      \   '.*\.dart$': {'ale_enabled': 0},
+      \   '.*\.js$'  : {'ale_enabled': 0},
+      \   '.*\.ts$'  : {'ale_enabled': 0},
+      \   '.*\.json$': {'ale_enabled': 0},
+      \   '.*\.ex$'  : {'ale_enabled': 0},
+      \   '.*\.eex$' : {'ale_enabled': 0},
+      \} 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "let g:ale_linters={'rust': ['rustc']}
 "let g:ale_rust_cargo_use_check=1
 let g:ale_fixers = {
-\   '*':          ['remove_trailing_lines', 'trim_whitespace'],
-\}
+      \   '*':          ['remove_trailing_lines', 'trim_whitespace'],
+      \}
 
 
 "Node Runtime
@@ -549,15 +584,15 @@ let g:ale_fixers = {
 "fzf fuzzy search
 "set rtp+=~/.vim/bundle/fzf.vim
 let g:rg_command = '
-		\ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-			\ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
-			\ -g "!{.git,node_modules,vendor,priv,_build,target}/*" '
+      \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+      \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
+      \ -g "!{.git,node_modules,vendor,priv,_build,target}/*" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 " Likewise, Files command with preview window
 
 command! -bang -nargs=? -complete=dir GitFiles
-			\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 map <leader>fg :GitFiles<CR>
 map <leader>ff :Files<CR>
@@ -580,9 +615,9 @@ let g:indentLine_char = '│'
 
 "Javascript
 "augroup javascript_folding
-	"au!
-	"au FileType javascript setlocal foldmethod=syntax
-	"au FileType jsx setlocal foldmethod=syntax
+"au!
+"au FileType javascript setlocal foldmethod=syntax
+"au FileType jsx setlocal foldmethod=syntax
 "augroup END
 "Async js Formatting
 "autocmd BufWritePost *.js AsyncRun -post=checktime eslint --fix %
@@ -603,12 +638,12 @@ let g:indentLine_char = '│'
 
 "Vim GUI stuff
 if has("gui_running")
-	"set guifont=Monofur\ Nerd\ Font\ Mono\ 12
-	set guioptions-=m  "remove menu bar
-	set guioptions-=T  "remove toolbar
-	set guioptions-=r  "remove right-hand scroll bar
-	set guioptions-=L  "remove left-hand scroll bar
-	"colorscheme gruvbox
+  "set guifont=Monofur\ Nerd\ Font\ Mono\ 12
+  set guioptions-=m  "remove menu bar
+  set guioptions-=T  "remove toolbar
+  set guioptions-=r  "remove right-hand scroll bar
+  set guioptions-=L  "remove left-hand scroll bar
+  "colorscheme gruvbox
 endif
 
 "Statusline
@@ -631,8 +666,8 @@ map <leader>gy :Goyo 95<CR>
 "let g:minimap_highlight='QuickFixLine'
 
 "alchemist elixir doc
-map <leader>ef :call alchemist#exdef()<CR>
-map <leader>mf :MixFormat<CR>
+au filetype elixir nmap <leader>ef :call alchemist#exdef()<CR>
+au filetype elixir nmap <leader>mf :MixFormat<CR>
 let g:alchemist#elixir_erlang_src='~/.local/share/elixir'
 
 "Interactive GQL window config
@@ -666,9 +701,12 @@ set shortmess+=c
 "au FileType rust nmap <leader>rs <Plug>(rust-def-split)
 "au FileType rust nmap <leader>rx <Plug>(rust-def-vertical)
 "au FileType rust nmap <leader>rd <Plug>(rust-doc)
-"au FileType rust nmap <leader>rr :RustRun<CR>
-"au FileType rust nmap <leader>rs :CocCommand rust-analyzer.syntaxTree<CR>
-"au FileType rust nmap <leader>rg :CocCommand rust-analyzer.collectGarbage<CR>
+"au FileType rust nmap <leader>rp :RustPlay<CR>
+au FileType rust nmap <leader>rr :RustRun<CR>
+"au FileType rust nmap <leader>rr :CocCommand rust-analyzer.run<CR>
+au FileType rust nmap <leader>rs :CocCommand rust-analyzer.syntaxTree<CR>
+au FileType rust nmap <leader>rg :CocCommand rust-analyzer.collectGarbage<CR>
+"au FileType rust nmap <leader>rf :Format<CR>
 "au FileType rust nmap <leader>rs <Plug>(rust-def-split)
 "au FileType rust nmap <leader>rx <Plug>(rust-def-vertical)
 "au FileType rust nmap <leader>rd <Plug>(rust-doc)
@@ -746,6 +784,8 @@ nmap <leader>cr <Plug>(coc-references)
 nmap <leader>ce <Plug>(coc-codelens-action)
 nmap <leader>ap <Plug>(coc-diagnostic-next)
 nmap <leader>an <Plug>(coc-diagnostic-prev)
+nmap <leader>cf <Plug>(coc-format)
+nmap <leader>cfs <Plug>(coc-format-selected)
 
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
@@ -805,10 +845,10 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 """""""""""
 "  Bazel  "
 """""""""""
-nmap <leader>bb :Bazel build src/build-all<CR>
-nmap <leader>br :Bazel run   src/build-all<CR>
-nmap <leader>bt :Bazel test --test_output all --verbose_failures test/main-test <CR>
-nmap <leader>bc :Bazel clean --async<CR>
+"nmap <leader>bb :Bazel build src/build-all<CR>
+"nmap <leader>br :Bazel run   src/build-all<CR>
+"nmap <leader>bt :Bazel test --test_output all --verbose_failures test/main-test <CR>
+"nmap <leader>bc :Bazel clean --async<CR>
 
 """""""""""""""""""""
 "  Language Server  "
@@ -860,13 +900,14 @@ let g:vista_ctags_cmd = {
 let g:vista_fzf_preview = ['right:100%']
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
-let g:vista_sidebar_width = 37
+let g:vista_sidebar_width = 30
+let g:vista_stay_on_open = 0
 
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
 "let g:vista#renderer#icons = {
-"\   "function": "\uf794",
-"\   "variable": "\uf71b",
-"\  }
+      "\   "function": "\uf794",
+      "\   "variable": "\uf71b",
+      "\  }
 
 map <silent> <C-x> :Vista!!<CR>
 
@@ -884,33 +925,33 @@ map <silent> <C-t> :belowright term<CR>
 hi link markdownError Normal
 
 function FindCursorPopUp()
-	let radius = get(a:000, 0, 2)
-	let srow = screenrow()
-	let scol = screencol()
-	" it's necessary to test entire rect, as some popup might be quite small
-	for r in range(srow - radius, srow + radius)
-		for c in range(scol - radius, scol + radius)
-			let winid = popup_locate(r, c)
-			if winid != 0
-				return winid
-			endif
-		endfor
-	endfor
+  let radius = get(a:000, 0, 2)
+  let srow = screenrow()
+  let scol = screencol()
+  " it's necessary to test entire rect, as some popup might be quite small
+  for r in range(srow - radius, srow + radius)
+    for c in range(scol - radius, scol + radius)
+      let winid = popup_locate(r, c)
+      if winid != 0
+        return winid
+      endif
+    endfor
+  endfor
 
-	return 0
+  return 0
 endfunction
 
 function ScrollPopUp(down)
-	let winid = FindCursorPopUp()
-	if winid == 0
-		return 0
-	endif
+  let winid = FindCursorPopUp()
+  if winid == 0
+    return 0
+  endif
 
-	let pp = popup_getpos(winid)
-	call popup_setoptions( winid,
-				\ {'firstline' : pp.firstline + ( a:down ? 1 : -1 ) } )
+  let pp = popup_getpos(winid)
+  call popup_setoptions( winid,
+        \ {'firstline' : pp.firstline + ( a:down ? 1 : -1 ) } )
 
-	return 1
+  return 1
 endfunction
 nnoremap <expr> <c-d> ScrollPopUp(1) ? '<esc>' : '<c-d>'
 nnoremap <expr> <c-a> ScrollPopUp(0) ? '<esc>' : '<c-a>'
@@ -919,7 +960,7 @@ nnoremap <expr> <c-a> ScrollPopUp(0) ? '<esc>' : '<c-a>'
 "  Predictive Text  "
 """""""""""""""""""""
 
-let g:predictive#dict_path="~/.vim/bundle/vim-predictive/dict_sample/"
+"let g:predictive#dict_path="~/.vim/bundle/vim-predictive/dict_sample/"
 
 """""""""""""""""
 "  Color Coded  "
