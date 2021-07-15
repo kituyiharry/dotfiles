@@ -902,6 +902,7 @@ let g:vista_fzf_preview = ['right:100%']
 let g:vista#renderer#enable_icon = 1
 let g:vista_sidebar_width = 30
 let g:vista_stay_on_open = 0
+let g:vista_sidebar_position = "vertical topleft"
 
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
 "let g:vista#renderer#icons = {
