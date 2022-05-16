@@ -8,7 +8,11 @@ My dev workflow configurations
 
 ![I3](desk-1.png "i3 window manager")
 
-## Vim with tmux
+## Vim + tmux
 
 ![vim-tmux](desk-2.png "Vim with tmux")
 ![vim-tmux](desk-3.png "Vim with tmux")
+
+## Kitty + Tmux on MacOS
+
+![apple](./desk-apple.png "kitty + tmux")
