@@ -6,3 +6,4 @@ cp -rv ~/.config/{i3,rofi,alacritty,konsole} .
 cp -v ~/.vimrc .
 cp -v ~/.tmux.conf .
 cp -v ~/.{bash,zsh}rc .
+cp -rv ~/.config/kitty .

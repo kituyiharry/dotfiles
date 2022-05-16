@@ -6,16 +6,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:~/.cargo/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/harryk/.oh-my-zsh"
+export ZSH="/Users/harrykwakuloba/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+#ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -77,31 +77,10 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git shrink-path fzf)
 
 source $ZSH/oh-my-zsh.sh
 
-export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
-export FZF_COMPLETION_TRIGGER='~~'
-
-
-export FZF_COMPLETION_OPTS='+c -x'
-
-
-_fzf_compgen_path() {
-  ag -g "" "$1" | with-dir "$1"
-}
-
-_fzf_compgen_dir() {
-  ag -g "" "$1" | only-dir "$1"
-}
-
-
 # User configuration
-export EDITOR='vim'
-
-# Catkin workspace
-source ~/catkin_ws/devel/setup.zsh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -123,14 +102,92 @@ source ~/catkin_ws/devel/setup.zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+plugins=(git fzf shrink-path)
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias cat=bat
-alias ls=exa
-alias la="exa -lah"
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/readline/lib"
+export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/zlib/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
+export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/readline/include"
+# #export LDFLAGS="$LDFLAGS:-L/opt/homebrew/opt/luajit-openresty/lib"
+# #export CPPFLAGS="$CPPFLAGS:-I/opt/homebrew/opt/luajit-openresty/include"
+# export LDFLAGS="$LDFLAGS:-L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/opt/homebrew/opt/llvm/lib"
+# export LDFLAGS="$LDFLAGS:-L/opt/homebrew/opt/llvm/lib"
+# export CPPFLAGS="$CPPFLAGS:-I/opt/homebrew/opt/llvm/include"
+# export CPPFLAGS="$CPPFLAGS:-I/opt/homebrew/opt/llvm/include/clang-c"
+# export CFLAGS="$CPPFLAGS"
+export DOCKER_HOST="ssh://harrykwakuloba@unix:///Users/harrykwakuloba/.docker/run/docker-cli-api.sock"
+export DOCKER_HOST="unix:///var/run/docker.sock"
+
+
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init --path)"
+#eval "$(pyenv init -)"
+
+[ -e ~/.profile ] && . ~/.profile
+[ -f ~/.oh-my-zsh/plugins/fzf/fzf.plugin.zsh ] && source ~/.oh-my-zsh/plugins/fzf/fzf.plugin.zsh
+export PATH="/opt/homebrew/opt/ncurses/bin:$PATH"
+#eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+if (command -v brew && brew list --formula | grep -c vim ) > /dev/null 2>&1; then
+    alias vim="$(brew --prefix vim)/bin/vim"
+    alias bison="$(brew --prefix bison)/bin/bison"
+fi
+
+export PATH="/Users/harrykwakuloba/.local/share/gem/ruby/3.0.0/bin:$PATH"
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/opt/homebrew/opt/php@7.2/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@7.2/sbin:$PATH"
+export PATH="/Users/harrykwakuloba/Developer/Flutter/flutter/bin:$PATH"
+
+#zsh_os_arch(){
+#  echo -n '\uf300'
+#  #echo -n '🐦'
+#}
+POWERLEVEL9K_CUSTOM_OS_ARCH="zsh_os_arch"
+POWERLEVEL9K_LINUX_ICON='\uE712'
+POWERLEVEL9K_VCS_GIT_ICON='\uF406 '
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0B4'
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0B6'
+POWERLEVEL9K_CONTEXT_TEMPLATE="@%n"
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='251'
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='000'
+POWERLEVEL9K_DIR_HOME_BACKGROUND='231'
+POWERLEVEL9K_DIR_HOME_FOREGROUND='000'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='231'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='000'
+POWERLEVEL9K_STATUS_ERROR_BACKGROUND='232'
+POWERLEVEL9K_STATUS_ERROR_FOREGROUND='red'
+POWERLEVEL9K_STATUS_OK_BACKGROUND='255'
+POWERLEVEL9K_STATUS_OK_FOREGROUND='green'
+POWERLEVEL9K_OS_ICON_FOREGROUND='255'
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+POWERLEVEL9K_CUSTOM_OS_ARCH_BACKGROUND="black"
+POWERLEVEL9K_CUSTOM_OS_ARCH_FOREGROUND="255"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon custom_os_arch_joined context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time_joined)
+#ZSH_THEME="agnoster"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="bullet-train"
+#ZSH_THEME="classyTouch_oh-my-zsh/classyTouch"
+
+#FZF Completion flags
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+export FZF_COMPLETION_TRIGGER='~~'
+
+# Options to fzf command
 export FZF_COMPLETION_OPTS='+c -x'
+#export FZF_BASE="/opt/homebrew/bin/"
+
 # Use ag instead of the default find command for listing path candidates.
 # - The first argument to the function is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
@@ -148,9 +205,57 @@ alias suroot='sudo -E -s'
 alias vf='vim $(fzf)'
 alias gvf='gvim $(fzf)'
 alias nvf='nvim $(fzf)'
+alias cat='bat'
+#alias ida64="/Applications/IDA\ Freeware\ 7.6/ida64.app/Contents/MacOS/ida64"
+alias mergepdf='gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite '
+alias gource_to_mp4='gource -s .06 -1280x720 --auto-skip-seconds .1 --multi-sampling --stop-at-end --key --highlight-users --hide mouse,progress --file-idle-time 0 --max-files 0 --background-colour 000000 --font-size 22 --title "Harry K | Fullstack" --output-ppm-stream - --output-framerate 30 | ffmpeg -y -r 24 -f image2pipe -vcodec ppm -i - -b 65536k gitlog.mp4'
+export EDITOR=vim
+setopt prompt_subst
+export PS1='%n@%m $(shrink_path -f)>'
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export GOPATH="/Users/harrykwakuloba/go"
+export GOBIN="/Users/harrykwakuloba/go/bin"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/anaconda3/bin/:$PATH"
+export PATH="$GOBIN:$PATH"
+export PATH="/Users/harrykwakuloba/.gem/ruby/3.1.0/bin:$PATH"
+export PATH="$GOPATH:$PATH"
 
 # opam configuration
-test -r /home/harryk/.opam/opam-init/init.zsh && . /home/harryk/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+test -r /Users/harrykwakuloba/.opam/opam-init/init.zsh && . /Users/harrykwakuloba/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+#export TERM=xterm-256color-italic.terminfo
+#
+export PKG_CONFIG_PATH="/opt/homebrew/Cellar/ncurses/6.2/lib/pkgconfig/"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/harrykwakuloba/Developer/Triage/gcloud-cli/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/harrykwakuloba/Developer/Triage/gcloud-cli/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/harrykwakuloba/Developer/Triage/gcloud-cli/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/harrykwakuloba/Developer/Triage/gcloud-cli/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

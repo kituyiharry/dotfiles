@@ -44,7 +44,6 @@ Plugin 'Yggdroot/indentLine'
 """""""""""""""""""
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-"
 
 """""""""""""""""""""
 "  Code Navigation  "
@@ -52,16 +51,17 @@ Plugin 'honza/vim-snippets'
 "Plugin 'gleam-lang/gleam.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'preservim/nerdcommenter'
-"Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'liuchengxu/vista.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'wfxr/minimap.vim'
-" if has("nvim")
-"   Plugin 'nvim-lua/popup.nvim'
-"   Plugin 'nvim-lua/plenary.nvim'
-"   Plugin 'nvim-telescope/telescope.nvim'
-" endif
+Plugin 'chrisbra/csv.vim'
+if has("nvim")
+   Plugin 'nvim-lua/popup.nvim'
+   Plugin 'nvim-lua/plenary.nvim'
+   Plugin 'nvim-telescope/telescope.nvim'
+endif
 "Plugin 'prabirshrestha/async.vim'
 "Plugin 'prabirshrestha/vim-lsp'
 "Plugin 'ycm-core/YouCompleteMe'
@@ -78,6 +78,9 @@ Plugin 'slashmili/alchemist.vim'
 Plugin 'ocaml/vim-ocaml'
 Plugin 'ocaml/merlin'
 
+Plugin 'fatih/vim-go'
+Plugin 'OmniSharp/omnisharp-vim'
+
 """""""""""""""""
 "  Code DevOps  "
 """""""""""""""""
@@ -86,6 +89,13 @@ Plugin 'sjl/gundo.vim'
 Plugin 'wincent/terminus'
 "Plugin 'bazelbuild/vim-bazel'
 "Plugin 'mattn/webapi-vim'
+Plugin 'scrooloose/vim-slumlord'
+Plugin 'aklt/plantuml-syntax'
+
+"""""""""""""""
+"  Debugging  "
+"""""""""""""""
+Plugin 'puremourning/vimspector'
 
 """""""""""""""""
 "  Code syntax  "
@@ -99,16 +109,23 @@ Plugin 'elixir-editors/vim-elixir'
 Plugin 'tpope/vim-surround'
 Plugin 'posva/vim-vue'
 Plugin 'peterhoeg/vim-qml'
-if has('neovim') != 0
-  " Plugin 'neovim/nvim-lspconfig'
-  " Plugin 'simrat39/rust-tools.nvim'
-
-  " " Optional dependencies
-  " Plugin 'nvim-lua/popup.nvim'
-  " Plugin 'nvim-lua/plenary.nvim'
-  "Plugin 'nvim-telescope/telescope.nvim'
-  Plugin 'jeaye/color_coded'
-endif
+Plugin 'hachibeeDI/vim-vbnet'
+Plugin 'jackguo380/vim-lsp-cxx-highlight'
+Plugin 'mityu/vim-applescript'
+Plugin 'rust-lang/rust.vim'
+Plugin 'machakann/vim-highlightedyank'
+Plugin 'andymass/vim-matchup'
+Plugin 'godlygeek/tabular'
+" if !has('neovim')
+"   " Plugin 'neovim/nvim-lspconfig'
+"   " Plugin 'simrat39/rust-tools.nvim'
+"
+"   " Optional dependencies
+"   " Plugin 'nvim-lua/popup.nvim'
+"   " Plugin 'nvim-lua/plenary.nvim'
+"   "Plugin 'nvim-telescope/telescope.nvim'
+Plugin 'jeaye/color_coded'
+" endif
 
 """"""""""""""""""""
 "  Database Stuff  "
@@ -150,6 +167,12 @@ endif
 let g:powerline_loaded=1
 "set clipboard=unnamedplus
 
+""""""""""""""
+"  Startify  "
+""""""""""""""
+let g:startify_change_to_dir = 0
+
+
 """"""""""""
 "  VimTex  "
 """"""""""""
@@ -164,7 +187,6 @@ set conceallevel=1
 "setlocal spell
 set spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-"TODO: Load plugins here (pathogen or vundle)
 " execute pathogen#infect()
 
 " Turn on syntax highlighting
@@ -230,8 +252,9 @@ set autoindent
 " Cursor motion
 set scrolloff=3
 set backspace=indent,eol,start
-set matchpairs+=<:> " use % to jump between pairs
-runtime! macros/matchit.vim
+" Matchup plugin will handle this
+"set matchpairs+=<:> " use % to jump between pairs
+"runtime! macros/matchit.vim
 
 " Move up/down editor lines
 nnoremap j gj
@@ -262,7 +285,7 @@ set ignorecase
 set smartcase
 set showmatch
 "clear search
-map <leader><space> :let @/=''<cr> 
+map <leader><space> :let @/=''<cr>
 
 " Remap help key.
 "inoremap <F1> <ESC>:set invfullscreen<CR>a
@@ -284,6 +307,10 @@ set foldlevel=2
 set listchars=tab:│\ ,trail:-
 "let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " Uncomment this to enable by default:
+"
+" Remove trailing whitespaces
+autocmd BufWritePre * :%s/\s\+$//e
+
 "
 "Split characters
 " GUI
@@ -317,6 +344,9 @@ colorscheme gruvbox
 " Next italics lines may be mac specific
 " Now, to have italicized comments in Vim, add this line to your after you declare your colorscheme:
 highlight Comment cterm=italic
+highlight markdownItalic cterm=italic
+highlight markdownBold cterm=bold
+highlight markdownH1 cterm=bold
 " If you still don't see Italics, add these lines to your .vimrc:
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
@@ -341,21 +371,21 @@ nmap <leader>sb :windo set scrollbind!<CR>
 "au BufReadPost *.handlebars set filetype=html
 
 "highlight current column
-set colorcolumn=80
+set colorcolumn=76
 set cursorline
 
-" https://vi.stackexchange.com/a/13336   
+" https://vi.stackexchange.com/a/13336
 "
 " When  you are  using another  application  and select  go back  to Vim  by
 " clicking inside Vim's text area, it not only switches application focus to
 " Vim, but it also moves the cursor  to that location. If you don't want the
 " cursor to move, put the following in your vimrc:
 
-"augroup NO_CURSOR_MOVE_ON_FOCUS
-  "au!
-  "au FocusLost * let g:oldmouse=&mouse | set mouse=
-  "au FocusGained * if exists('g:oldmouse') | let &mouse=g:oldmouse | unlet g:oldmouse | endif
-"augroup END
+augroup NO_CURSOR_MOVE_ON_FOCUS
+  au!
+  au FocusLost * let g:oldmouse=&mouse | set mouse=
+  au FocusGained * if exists('g:oldmouse') | let &mouse=g:oldmouse | unlet g:oldmouse | endif
+augroup END
 
 """""""""""""
 "  Minimap  "
@@ -371,7 +401,8 @@ let g:minimap_width = 20
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "aurora grayscale minimalist vice
-let g:airline_theme='fruit_punch'
+"let g:airline_theme='fruit_punch'
+let g:airline_theme='base16'
 "let g:airline_theme='base16_gruvbox_dark_hard'
 "let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
@@ -388,14 +419,14 @@ let g:airline#extensions#whitespace#enabled = 0
 
 inoremap <c-x><c-k> <c-x><c-k>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 Ultisnips                                  "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 Ultisnips                               "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  Bindings for this plugin are indeed very weird so they might clash and
 "  cause unexpected behaviour!! so far these are sane but from experience they
 "  can go haywire!"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsUsePythonVersion=3
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "vim-snippets"]
 let g:UltiSnipsExpandTrigger="<c-a>"
@@ -403,9 +434,9 @@ let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsListSnippets="<c-t>"
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               YouCompleteMe                                "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               YouCompleteMe                             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_key_list_previous_completion=['<Up>']
 "let g:ycm_key_list_select_completion=[]
 "let g:ycm_key_list_previous_completion=[]
@@ -483,7 +514,7 @@ augroup CloseIfOnlyControlWinLeft
   au!
   au BufEnter * call s:CloseIfOnlyControlWinLeft()
   "autocmd bufenter * if (winnr("$") == bufwinnr("__vista__")) | q | endif
-  au BufEnter * if winnr("$") == 1 && vista#sidebar#IsOpen() | execute "normal! :q!\<CR>" | endif
+  "au BufEnter * if winnr("$") == 1 && vista#sidebar#IsOpen() | execute "normal! :q!\<CR>" | endif
   au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   "au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
@@ -514,7 +545,7 @@ augroup END
 "let g:ale_linter_aliases = {'vue': ['css', 'javascript']}
 "" Set this setting in vimrc if you want to fix files automatically on save.
 "" This is off by default.
-"set completeopt=menu,menuone,preview,noselect,noinsert "prevent insertion bug
+set completeopt=menu,menuone,preview,noselect,noinsert "prevent insertion bug
 let g:ale_completion_enabled = 0
 "let g:ale_fix_on_save = 1
 "let g:ale_sign_column_always = 0
@@ -525,8 +556,8 @@ let g:ale_sign_warning = ''
 let g:ale_lint_on_enter = 0
 "let g:ale_open_list = 0
 "let g:ale_set_quickfix = 1
-""nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
-""nmap <silent> <leader>an <Plug>(ale_next_wrap)
+"nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
+"nmap <silent> <leader>an <Plug>(ale_next_wrap)
 "nmap <silent> <leader>af <Plug>(ale_fix)
 "nmap <silent> <leader>ad <Plug>(ale_go_to_definition)
 "let g:ale_echo_msg_error_str = ''
@@ -544,30 +575,33 @@ let g:ale_echo_msg_format = '%severity% [%linter%]: %s'
 "highlight clear ALEErrorSign
 "highlight clear ALEWarningSign
 let g:ale_linters={
-\  'rust': ['cargo', 'analyzer'], 
-\  'javascript': ['tsserver', 'eslint'], 
-\  'vue': ['eslint']
+\  'rust': ['cargo', 'analyzer'],
+\  'javascript': ['tsserver', 'eslint'],
+\  'vue': ['eslint'],
+\  'elixir': ['elixir-ls'],
 \}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_pattern_options = {
       \   '.*\.cc$'  : {'ale_enabled': 0},
       \   '.*\.cpp$' : {'ale_enabled': 0},
-      \   '.*\.rs$'  : {'ale_enabled': 1},
+      \   '.*\.rs$'  : {'ale_enabled': 0},
       \   '.*\.dart$': {'ale_enabled': 0},
       \   '.*\.js$'  : {'ale_enabled': 0},
       \   '.*\.ts$'  : {'ale_enabled': 0},
       \   '.*\.json$': {'ale_enabled': 0},
       \   '.*\.ex$'  : {'ale_enabled': 0},
       \   '.*\.eex$' : {'ale_enabled': 0},
-      \} 
+      \}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "let g:ale_linters={'rust': ['rustc']}
 "let g:ale_rust_cargo_use_check=1
 let g:ale_fixers = {
-      \   '*':          ['remove_trailing_lines', 'trim_whitespace'],
+      \   '*':      ['remove_trailing_lines', 'trim_whitespace'],
+      \  'elixir':  ['mix_format'],
       \}
 
+"let g:ale_elixir_elixir_ls_release='~/.elixir-ls/release'
 
 "Node Runtime
 ":set runtimepath^=~/.vim/bundle/node
@@ -595,6 +629,7 @@ command! -bang -nargs=? -complete=dir GitFiles
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 map <leader>fg :GitFiles<CR>
+map <leader>fr :Rg<CR>
 map <leader>ff :Files<CR>
 map <leader>fc :Commands<CR>
 map <leader>fm :Maps<CR>
@@ -659,7 +694,7 @@ set statusline+=%=        "right align remainder
 "set statusline+=%<%P            "file position
 
 "GoyoToggle
-map <leader>gy :Goyo 95<CR>
+map <leader>gy :Goyo<CR>
 
 "Vim-Minimap
 "let g:minimap_toggle='<leader>mt'
@@ -668,7 +703,7 @@ map <leader>gy :Goyo 95<CR>
 "alchemist elixir doc
 au filetype elixir nmap <leader>ef :call alchemist#exdef()<CR>
 au filetype elixir nmap <leader>mf :MixFormat<CR>
-let g:alchemist#elixir_erlang_src='~/.local/share/elixir'
+let g:alchemist#elixir_erlang_src='~/.local/share/elixir/src'
 
 "Interactive GQL window config
 "map <leader>gq :GQLGraphiQL<CR>
@@ -703,6 +738,7 @@ set shortmess+=c
 "au FileType rust nmap <leader>rd <Plug>(rust-doc)
 "au FileType rust nmap <leader>rp :RustPlay<CR>
 au FileType rust nmap <leader>rr :RustRun<CR>
+au FileType rust nmap <leader>rt :RustTest<CR>
 "au FileType rust nmap <leader>rr :CocCommand rust-analyzer.run<CR>
 au FileType rust nmap <leader>rs :CocCommand rust-analyzer.syntaxTree<CR>
 au FileType rust nmap <leader>rg :CocCommand rust-analyzer.collectGarbage<CR>
@@ -710,6 +746,29 @@ au FileType rust nmap <leader>rg :CocCommand rust-analyzer.collectGarbage<CR>
 "au FileType rust nmap <leader>rs <Plug>(rust-def-split)
 "au FileType rust nmap <leader>rx <Plug>(rust-def-vertical)
 "au FileType rust nmap <leader>rd <Plug>(rust-doc)
+
+""""""""""""""
+"  PlantUML  "
+""""""""""""""
+au filetype plantuml silent! IndentLinesDisable
+
+
+""""""""""""
+"  Golang  "
+""""""""""""
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+nmap <leader>glt :GoTestFunc<CR>
+nmap <leader>gli :GoImplements<CR>
+nmap <leader>glr :GoRun<CR>
+nmap <leader>glb :GoBuild<CR>
+" Completion
+au filetype go inoremap <buffer> . .<C-x><C-o>
+
+""""""""""""""""""
+"  VimInspector  "
+""""""""""""""""""
+let g:vimspector_enable_mappings = 'HUMAN'
 
 """"""""""""""
 "  Prettier  "
@@ -808,6 +867,12 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+function! CocSearchCommand()
+   execute 'CocSearch '.expand("<cword>")
+ endfunction
+
+" Symbol Renaming via grep
+nmap <leader>rnn :call CocSearchCommand()<CR>
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -902,7 +967,7 @@ let g:vista_fzf_preview = ['right:100%']
 let g:vista#renderer#enable_icon = 1
 let g:vista_sidebar_width = 30
 let g:vista_stay_on_open = 0
-let g:vista_sidebar_position = "vertical topleft"
+"let g:vista_sidebar_position = "vertical topleft"
 
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
 "let g:vista#renderer#icons = {
@@ -966,6 +1031,9 @@ nnoremap <expr> <c-a> ScrollPopUp(0) ? '<esc>' : '<c-a>'
 """""""""""""""""
 "  Color Coded  "
 """""""""""""""""
+let g:lsp_cxx_hl_use_text_props = 1
+
+" Expensive to load this
 let g:color_coded_enabled = 1
 let g:color_coded_filetypes = ['c', 'cpp', 'objc', 'hpp']
 
@@ -975,40 +1043,50 @@ let g:color_coded_filetypes = ['c', 'cpp', 'objc', 'hpp']
 "let g:slime_target = "tmux"
 "
 
-"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-"execute "set rtp+=" . g:opamshare . "/merlin/vim"
-"set rtp^="/home/harryk/.opam/ocaml-base-compiler/share/ocp-indent/vim"
+let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim/"
+set rtp+="~/.opam/default/share/ocp-indent/vim"
+set rtp+="~/.opam/default/lib"
+set rtp+="~/.opam/default/lib/TCSLib"
 
-" ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
-let s:opam_share_dir = system("opam config var share")
-let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
+" === slows down startup!
+if has("neovim") != 0
 
-let s:opam_configuration = {}
+  " ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
+  let s:opam_share_dir = system("opam config var share")
+  let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
 
-function! OpamConfOcpIndent()
-  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
-endfunction
-let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
+  let s:opam_configuration = {}
 
-function! OpamConfOcpIndex()
-  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
-endfunction
-let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
+  function! OpamConfOcpIndent()
+    execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
+  endfunction
+  let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
 
-function! OpamConfMerlin()
-  let l:dir = s:opam_share_dir . "/merlin/vim"
-  execute "set rtp+=" . l:dir
-endfunction
-let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+  function! OpamConfOcpIndex()
+    execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
+  endfunction
+  let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
 
-let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
-let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
-let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
-for tool in s:opam_packages
-  " Respect package order (merlin should be after ocp-index)
-  if count(s:opam_available_tools, tool) > 0
-    call s:opam_configuration[tool]()
+  function! OpamConfMerlin()
+    let l:dir = s:opam_share_dir . "/merlin/vim"
+    execute "set rtp+=" . l:dir
+  endfunction
+  let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+
+  let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
+  let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
+  let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
+  for tool in s:opam_packages
+    " Respect package order (merlin should be after ocp-index)
+    if count(s:opam_available_tools, tool) > 0
+      call s:opam_configuration[tool]()
+    endif
+  endfor
+  " ## end of OPAM user-setup addition for vim / base ## keep this line
+  " ## added by OPAM user-setup for vim / ocp-indent ## 275b0634fd60a9c582dda2d0de07599f ## you can edit, but keep this line
+  if count(s:opam_available_tools,"ocp-indent") == 0
+    source "/Users/harrykwakuloba/.opam/default/share/ocp-indent/vim/indent/ocaml.vim"
   endif
-endfor
-" ## end of OPAM user-setup addition for vim / base ## keep this line
-"
+  " ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line
+endif
