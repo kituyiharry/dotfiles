@@ -6,11 +6,9 @@ My dev workflow configurations
 
 ## Neovim + Tmux on MacOS
 
-![nvim](./nvim.gif "Neovim configuration")
-
+[nvim.webm](https://user-images.githubusercontent.com/12397823/208299143-0b201d73-b7f9-4abd-a9d6-29e10e6dd442.webm)
 
 ## I3 - WM choice
-
 ![I3](desk-1.png "i3 window manager")
 
 ## Vim + tmux
