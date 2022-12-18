@@ -3,6 +3,7 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 lsp.setup()
 
+
 lsp.ensure_installed({
   'tsserver',
   'eslint',
@@ -14,6 +15,19 @@ lsp.ensure_installed({
   'erlangls',
   'pyright',
 })
+
+vim.api.nvim_set_hl(0, "NormalFloat", { guibg = "None", guifg = "None" }, false)
+
+require'lspconfig'.sumneko_lua.setup {
+    -- ... other configs
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+}
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -64,17 +78,6 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 
 end)
-
-require'lspconfig'.sumneko_lua.setup {
-    -- ... other configs
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-}
 
 lsp.setup()
 

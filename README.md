@@ -2,7 +2,12 @@
 
 My dev workflow configurations
 
-[Blog Post](http://blog.harryk.dev)
+[Blog](http://blog.harryk.dev)
+
+## Neovim + Tmux on MacOS
+
+![nvim](./nvim.gif "Neovim configuration")
+
 
 ## I3 - WM choice
 
@@ -12,7 +17,3 @@ My dev workflow configurations
 
 ![vim-tmux](desk-2.png "Vim with tmux")
 ![vim-tmux](desk-3.png "Vim with tmux")
-
-## Kitty + Tmux on MacOS
-
-![apple](./desk-apple.png "kitty + tmux")
