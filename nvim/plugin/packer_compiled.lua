@@ -109,6 +109,16 @@ _G.packer_plugins = {
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/csv.vim",
     url = "https://github.com/chrisbra/csv.vim"
   },
+  ["dart-vim-plugin"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/dart-vim-plugin",
+    url = "https://github.com/dart-lang/dart-vim-plugin"
+  },
+  ["flutter-tools.nvim"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/flutter-tools.nvim",
+    url = "https://github.com/akinsho/flutter-tools.nvim"
+  },
   fzf = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/fzf",
@@ -118,6 +128,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/fzf.vim",
     url = "https://github.com/junegunn/fzf.vim"
+  },
+  ["goyo.vim"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/goyo.vim",
+    url = "https://github.com/junegunn/goyo.vim"
   },
   gruvbox = {
     config = { "\27LJ\2\n7\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\24colorscheme gruvbox\bcmd\bvim\0" },
@@ -230,6 +245,11 @@ _G.packer_plugins = {
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
     url = "https://github.com/airblade/vim-gitgutter"
   },
+  ["vim-go"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/vim-go",
+    url = "https://github.com/fatih/vim-go"
+  },
   ["vim-highlightedyank"] = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
@@ -239,6 +259,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/vim-snippets",
     url = "https://github.com/honza/vim-snippets"
+  },
+  ["vim-startify"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/vim-startify",
+    url = "https://github.com/mhinz/vim-startify"
   },
   ["vista.vim"] = {
     loaded = true,

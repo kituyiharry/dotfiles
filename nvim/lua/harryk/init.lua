@@ -1,5 +1,6 @@
 -- print("Hallo from harryk")
 require('luasnip.loaders.from_snipmate').lazy_load()
+
 vim.cmd([[
   set nocompatible
   filetype plugin on
@@ -13,7 +14,7 @@ vim.cmd([[
   "Security
   set modelines=0
 
-  set updatetime=50
+  set updatetime=250
 
   "Show line numbers
   set number
@@ -153,4 +154,7 @@ vim.cmd([[
   augroup END
 
   set signcolumn=yes
+
+  autocmd BufWritePre * :%s/\s\+$//e
+
 ]])

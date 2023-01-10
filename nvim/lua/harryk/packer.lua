@@ -11,7 +11,7 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     -- or                          , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
   -- FZF better
@@ -19,13 +19,13 @@ return require('packer').startup(function(use)
   use('junegunn/fzf.vim')
 
   -- Gruvbox
-  use({ "ellisonleao/gruvbox.nvim" , as = 'gruvbox',
-  config = function()
-    vim.cmd [[colorscheme gruvbox]]
-  end})
+  use({ "ellisonleao/gruvbox.nvim", as = 'gruvbox',
+    config = function()
+      vim.cmd [[colorscheme gruvbox]]
+    end })
 
   -- Treesitter
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
   use('nvim-treesitter/playground')
   use('nvim-treesitter/nvim-treesitter-context')
 
@@ -59,24 +59,31 @@ return require('packer').startup(function(use)
     'VonHeikemen/lsp-zero.nvim',
     requires = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
+      { 'neovim/nvim-lspconfig' },
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
 
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
 
       -- Snippets
-      {'L3MON4D3/LuaSnip'},
+      { 'L3MON4D3/LuaSnip' },
       --{'rafamadriz/friendly-snippets'},
     }
   }
+
   use('liuchengxu/vista.vim')
+  use('dart-lang/dart-vim-plugin')
+
+  use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' }
+  use('mhinz/vim-startify')
+  use('junegunn/goyo.vim')
+  use('fatih/vim-go', { run = ':GoUpdateBinaries' })
 
   -- You can alias plugin names
 end)

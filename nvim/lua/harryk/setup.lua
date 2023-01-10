@@ -14,7 +14,7 @@ end
 
 
 function SetupAirline(theme)
-  th = theme or 'fruit_punch'
+  local th = theme or 'fruit_punch'
   vim.g.airline_theme=th
   vim.g.airline_powerline_fonts=1
   -- Enable the list of buffers
@@ -30,8 +30,6 @@ function SetupAirline(theme)
   ]])
 end
 
-
-
 function SetupGitGutter()
   vim.g.gitgutter_sign_added = '┃'
   vim.g.gitgutter_sign_modified = '┃'
@@ -41,20 +39,33 @@ function SetupGitGutter()
   vim.g.gitgutter_set_sign_backgrounds = 1
 end
 
-
 function SetupIndentline()
   vim.g.indentLine_char = '│'
   vim.g.indent_guides_enable_on_vim_startup = 0
   vim.g.indent_guides_auto_colors = 0
 end
 
+function SetupStartify()
+  vim.g.startify_change_to_dir = 0
+end
+
+function SetupLSP()
+  vim.g.go_def_mode='gopls'
+  vim.g.go_info_mode='gopls'
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    callback = function()
+        vim.lsp.buf.format()
+    end
+  })
+end
 
 function Setup(config)
   SetupIndentline()
   SetupGitGutter()
   SetupAirline(config.theme)
   SetupUltisnips()
+  SetupStartify()
+  SetupLSP()
 end
 
 Setup({})
-
