@@ -1,34 +1,34 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+"set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
+"alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
+"let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+"The following are examples of different formats supported.
+"Keep Plugin commands between vundle#begin/end.
+"plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
+"plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+"Git plugin not hosted on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
+"git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+"The sparkup vim script is in a subdirectory of this repo called vim.
+"Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+"Install L9 and avoid a Naming conflict if you've already installed a
+"different version somewhere else.
+"Plugin 'ascenator/L9', {'name': 'newL9'}
 
 """"""""""""""""
-"  Aesthetics  "
+" Aesthetics  "
 """"""""""""""""
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -36,17 +36,16 @@ Plugin 'morhetz/gruvbox'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'junegunn/goyo.vim'
 Plugin 'mhinz/vim-startify'
-"Plugin 'petRUShka/vim-opencl'
 Plugin 'Yggdroot/indentLine'
 
 """""""""""""""""""
-"  Code Snippets  "
+" Code Snippets  "
 """""""""""""""""""
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 """""""""""""""""""""
-"  Code Navigation  "
+" Code Navigation  "
 """""""""""""""""""""
 "Plugin 'gleam-lang/gleam.vim'
 Plugin 'preservim/nerdtree'
@@ -57,20 +56,15 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'wfxr/minimap.vim'
 Plugin 'chrisbra/csv.vim'
-if has("nvim")
+if has('nvim')
    Plugin 'nvim-lua/popup.nvim'
    Plugin 'nvim-lua/plenary.nvim'
    Plugin 'nvim-telescope/telescope.nvim'
 endif
-"Plugin 'prabirshrestha/async.vim'
-"Plugin 'prabirshrestha/vim-lsp'
-"Plugin 'ycm-core/YouCompleteMe'
 
 """""""""""""""""""""
-"  Code completion  "
+" Code completion  "
 """""""""""""""""""""
-"Plugin 'natebosch/vim-lsc'
-"Plugin 'natebosch/vim-lsc-dart'
 Plugin 'neoclide/coc.nvim'
 Plugin 'dense-analysis/ale'
 Plugin 'slashmili/alchemist.vim'
@@ -82,23 +76,28 @@ Plugin 'fatih/vim-go'
 Plugin 'OmniSharp/omnisharp-vim'
 
 """""""""""""""""
-"  Code DevOps  "
+" Code DevOps  "
 """""""""""""""""
 Plugin 'airblade/vim-gitgutter'
 Plugin 'sjl/gundo.vim'
 Plugin 'wincent/terminus'
-"Plugin 'bazelbuild/vim-bazel'
-"Plugin 'mattn/webapi-vim'
 Plugin 'scrooloose/vim-slumlord'
 Plugin 'aklt/plantuml-syntax'
+if has('neovim')
+  Plugin 'nvim-treesitter/nvim-treesitter'
+  Plugin 'nvim-treesitter/nvim-treesitter-context'
+else
+  Plugin 'wellle/context.vim'
+endif
+
 
 """""""""""""""
-"  Debugging  "
+" Debugging  "
 """""""""""""""
 Plugin 'puremourning/vimspector'
 
 """""""""""""""""
-"  Code syntax  "
+" Code syntax  "
 """""""""""""""""
 Plugin 'lervag/vimtex'
 Plugin 'jxnblk/vim-mdx-js'
@@ -109,52 +108,55 @@ Plugin 'elixir-editors/vim-elixir'
 Plugin 'tpope/vim-surround'
 Plugin 'posva/vim-vue'
 Plugin 'peterhoeg/vim-qml'
-Plugin 'hachibeeDI/vim-vbnet'
-Plugin 'jackguo380/vim-lsp-cxx-highlight'
+"Plugin 'hachibeeDI/vim-vbnet'
+"Plugin 'jackguo380/vim-lsp-cxx-highlight'
 Plugin 'mityu/vim-applescript'
 Plugin 'rust-lang/rust.vim'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'andymass/vim-matchup'
 Plugin 'godlygeek/tabular'
-" if !has('neovim')
-"   " Plugin 'neovim/nvim-lspconfig'
-"   " Plugin 'simrat39/rust-tools.nvim'
+ if has('nvim') != 1
+"  " Plugin 'neovim/nvim-lspconfig'
+"  " Plugin 'simrat39/rust-tools.nvim'
 "
-"   " Optional dependencies
-"   " Plugin 'nvim-lua/popup.nvim'
-"   " Plugin 'nvim-lua/plenary.nvim'
-"   "Plugin 'nvim-telescope/telescope.nvim'
-Plugin 'jeaye/color_coded'
-" endif
+"  " Optional dependencies
+"  " Plugin 'nvim-lua/popup.nvim'
+"  " Plugin 'nvim-lua/plenary.nvim'
+"  " Plugin 'nvim-telescope/telescope.nvim'
+  Plugin 'jeaye/color_coded'
+endif
 
 """"""""""""""""""""
-"  Database Stuff  "
+" Database Stuff  "
 """"""""""""""""""""
 Plugin 'tpope/vim-dadbod'
 
 """""""""""""""
-"  Art Stuff  "
+" Art Stuff  "
 """""""""""""""
 Plugin 'gyim/vim-boxdraw'
-" All of your Plugins must be added before the following line
+
+"All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
+"To ignore plugin indent changes, instead use:
 filetype plugin on
 filetype on
 
-" Needed or else ocaml files are noticed as omlet disabling completion!!
+"Needed or else ocaml files are noticed as omlet disabling completion!!
 autocmd BufRead,BufNewFile *.ml set filetype=ocaml
 autocmd BufRead,BufNewFile *.mli set filetype=ocaml
+autocmd BufRead,BufNewFile .ocamlinit set filetype=ocaml
+
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"Brief help
+":PluginList       - lists configured plugins
+":PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+":PluginSearch foo - searches for foo; append `!` to refresh local cache
+":PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+"see :h vundle for more details or wiki for FAQ
+"Put your non-Plugin stuff after this line
 "
 "nvim from vim
 if has("nvim")
@@ -165,16 +167,16 @@ if has("nvim")
   " let g:powerline_pycmd="py"
 endif
 let g:powerline_loaded=1
-"set clipboard=unnamedplus
+" set clipboard=unnamedplus
 
 """"""""""""""
-"  Startify  "
+" Startify  "
 """"""""""""""
 let g:startify_change_to_dir = 0
 
 
 """"""""""""
-"  VimTex  "
+" VimTex  "
 """"""""""""
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
@@ -182,18 +184,15 @@ let g:vimtex_quickfix_mode=0
 " tex-conceal
 let g:tex_conceal='abdmg'
 set conceallevel=1
-"hi Conceal ctermbg=none
+" hi Conceal ctermbg=none
 
-"setlocal spell
+" setlocal spell
 set spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-" execute pathogen#infect()
+"execute pathogen#infect()
 
-" Turn on syntax highlighting
+"Turn on syntax highlighting
 syntax on
-
-" For plugins to load correctly
-"filetype plugin indent on
 
 if has('nvim') == 0
   set ttymouse=xterm2
@@ -201,40 +200,40 @@ endif
 set mouse=a
 
 """""""""""
-"  Gundo  "
+" Gundo  "
 """""""""""
 map <leader>gt :GundoToggle<CR>
 map <leader>gr :GundoRenderGraph<CR>
 let g:gundo_prefer_python3=1
 
-"  Pick a leader key
+" Pick a leader key
 let mapleader=","
 
-" Security
+"Security
 set modelines=0
 
-" Show line numbers
+"Show line numbers
 set number
 set relativenumber
 
-" Show file stats
+"Show file stats
 set ruler
 
-" Blink cursor on error instead of beeping (grr)
+"Blink cursor on error instead of beeping (grr)
 set visualbell
 set belloff=all
 
-" Encoding
+"Encoding
 set encoding=utf-8
-" set UTF-8 encoding
+"set UTF-8 encoding
 set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
-" use intelligent indentation for C
+"use intelligent indentation for C
 set smartindent
 set autoindent
 
-" Whitespace
+"Whitespace
 set wrap
 set textwidth=80
 set formatoptions+=tcqrn1
@@ -243,40 +242,39 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-"set noexpandtab
 set noshiftround
 set autoindent
 
 "set autoindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
 
-" Cursor motion
+"Cursor motion
 set scrolloff=3
 set backspace=indent,eol,start
-" Matchup plugin will handle this
+"Matchup plugin will handle this
 "set matchpairs+=<:> " use % to jump between pairs
 "runtime! macros/matchit.vim
 
-" Move up/down editor lines
+"Move up/down editor lines
 nnoremap j gj
 nnoremap k gk
 
-" Mac specific visual block
+"Mac specific visual block
 "nnoremap <c-v> <c-q>
 
-" Allow hidden buffers
+"Allow hidden buffers
 set hidden
 
-" Rendering
+"Rendering
 set ttyfast
 
-" Status bar
+"Status bar
 set laststatus=2
 
-" Last line
+"Last line
 set showmode
 set showcmd
 
-" Searching
+"Searching
 "nnoremap / /\v
 "vnoremap / /\v
 set hlsearch
@@ -287,14 +285,14 @@ set showmatch
 "clear search
 map <leader><space> :let @/=''<cr>
 
-" Remap help key.
+"Remap help key.
 "inoremap <F1> <ESC>:set invfullscreen<CR>a
 "nnoremap <F1> :set invfullscreen<CR>
 "vnoremap <F1> :set invfullscreen<CR>
 
-" Textmate holdouts
+"Textmate holdouts
 
-" Formatting
+"Formatting
 "map <leader>q gqip
 "Fold around indentations
 set foldmethod=indent
@@ -302,58 +300,55 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=2
 
-" Visualize tabs and newlines
+"Visualize tabs and newlines
 "set listchars=tab:▸\ ,eol:¬
 set listchars=tab:│\ ,trail:-
 "let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-" Uncomment this to enable by default:
+"Uncomment this to enable by default:
 "
-" Remove trailing whitespaces
+"Remove trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
 "
 "Split characters
-" GUI
+"GUI
 hi LineNr guibg=bg
 set foldcolumn=2
 hi foldcolumn guibg=bg
 hi VertSplit guibg=bg guifg=bg
 
-" Vim
-" remove | characters in the split
-" use this one instead and hide highlights after
+"Vim
+"remove | characters in the split
+"use this one instead and hide highlights after
 set fillchars+=vert:\│
 
 set list " To enable by default
-" Or use your leader key + l to toggle on/off
-map <leader>l :set list!<CR> " Toggle tabs and EOL
+"Or use your leader key + l to toggle on/off
+"Toggle tabs and EOL
+map <leader>l :set list!<CR>
 
 "Make vim remember last location when editing
-"if has("autocmd")
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"endif
 
-" Color scheme (terminal)
+"Color scheme (terminal)
 set t_Co=256
 set background=dark
 let g:hybrid_termcolors=256
 let g:hybrid_termtrans=1
-" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
-" in ~/.vim/colors/ and uncomment:
+"put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
+"in ~/.vim/colors/ and uncomment:
 colorscheme gruvbox
-" Next italics lines may be mac specific
-" Now, to have italicized comments in Vim, add this line to your after you declare your colorscheme:
+"Next italics lines may be mac specific
+"Now, to have italicized comments in Vim, add this line to your after you declare your colorscheme:
 highlight Comment cterm=italic
 highlight markdownItalic cterm=italic
 highlight markdownBold cterm=bold
 highlight markdownH1 cterm=bold
-" If you still don't see Italics, add these lines to your .vimrc:
+"If you still don't see Italics, add these lines to your .vimrc:
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 "set t_ZH=^[[3m
 "set t_ZR=^[[23m
-"colorscheme elflord
-"colorscheme gruvbox
 hi Normal ctermbg=none
 hi VertSplit ctermbg=NONE
 
@@ -361,7 +356,7 @@ function! <SID>SynStack()
   if !exists("*synstack")
     return
   endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  echo map(synstack(line("."), col(".")), 'synIDattr(v:val, "name")')
 endfunc
 nmap <leader>sp :call <SID>SynStack()<CR>
 nmap <leader>sb :windo set scrollbind!<CR>
@@ -374,12 +369,12 @@ nmap <leader>sb :windo set scrollbind!<CR>
 set colorcolumn=76
 set cursorline
 
-" https://vi.stackexchange.com/a/13336
+"https://vi.stackexchange.com/a/13336
 "
-" When  you are  using another  application  and select  go back  to Vim  by
-" clicking inside Vim's text area, it not only switches application focus to
-" Vim, but it also moves the cursor  to that location. If you don't want the
-" cursor to move, put the following in your vimrc:
+"When  you are  using another  application  and select  go back  to Vim  by
+"clicking inside Vim's text area, it not only switches application focus to
+"Vim, but it also moves the cursor  to that location. If you don't want the
+"cursor to move, put the following in your vimrc:
 
 augroup NO_CURSOR_MOVE_ON_FOCUS
   au!
@@ -388,7 +383,7 @@ augroup NO_CURSOR_MOVE_ON_FOCUS
 augroup END
 
 """""""""""""
-"  Minimap  "
+" Minimap  "
 """""""""""""
 nmap <leader>mt :MinimapToggle<CR>
 let g:minimap_width = 20
@@ -397,35 +392,33 @@ let g:minimap_width = 20
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                  Airline                                   "
+"                                 Airline                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "aurora grayscale minimalist vice
 "let g:airline_theme='fruit_punch'
 let g:airline_theme='base16'
-"let g:airline_theme='base16_gruvbox_dark_hard'
-"let g:airline_theme='minimalist'
 let g:airline_powerline_fonts = 1
-" Enable the list of buffers
+"Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
+"Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_left_sep = "\uE0B4"
 let g:airline_right_sep = "\uE0B6"
 
-" set the CN (column number) symbol:
+"set the CN (column number) symbol:
 let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
 let g:airline#extensions#whitespace#enabled = 0
 
 inoremap <c-x><c-k> <c-x><c-k>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 Ultisnips                               "
+"                                Ultisnips                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  Bindings for this plugin are indeed very weird so they might clash and
-"  cause unexpected behaviour!! so far these are sane but from experience they
-"  can go haywire!"
+" Bindings for this plugin are indeed very weird so they might clash and
+" cause unexpected behaviour!! so far these are sane but from experience they
+" can go haywire!#
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsUsePythonVersion=3
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "vim-snippets"]
@@ -434,55 +427,9 @@ let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsListSnippets="<c-t>"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               YouCompleteMe                             "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ycm_key_list_previous_completion=['<Up>']
-"let g:ycm_key_list_select_completion=[]
-"let g:ycm_key_list_previous_completion=[]
-"let g:ycm_semantic_triggers =  {
-      "\   'c' : ['->', '.'],
-      "\   'objc' : ['->', '.'],
-      "\   'ocaml' : ['.', '#'],
-      "\   'cpp,objcpp' : ['->', '.', '::'],
-      "\   'cc' : ['->', '.', '::'],
-      "\   'perl' : ['->'],
-      "\   'php' : ['->', '::'],
-      "\   'cs,java,javascript,d,python3,python,perl6,scala,vb,elixir,go' : ['.'],
-      "\   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-      "\   'ruby' : ['.', '::'],
-      "\   'lua' : ['.', ':'],
-      "\   'erlang' : [':'],
-      "\ }
-"let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
-"let g:ycm_complete_in_comments=0
-"let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-"let g:ycm_use_ultisnips_completer=1
-"let g:ycm_autoclose_preview_window_after_completion=1
-"let g:ycm_autoclose_preview_window_after_insertion=1
-"let g:ycm_confirm_extra_conf=0
-"let g:ycm_show_diagnostics_ui = 0
-"map <leader>yg :YcmCompleter GetDoc<CR>
-"map <leader>yd :YcmCompleter GoToDeclaration<CR>
-"map <leader>ye :YcmCompleter GoToDefinition<CR>
-"map <leader>yi :YcmCompleter GoToInclude<CR>
-"map <leader>yf :YcmCompleter FixIt<CR>
-"map <leader>yr :YcmCompleter GoToReferences<CR>
-""let g:ycm_rust_src_path='~/Programmes/Rust/rust_src/rust/src'
-"let g:ycm_rust_src_path='~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-"let g:racer_cmd='/home/harryk/.cargo/bin/racer'
-"let g:ycm_language_server =
-      "\ [
-      "\   {
-      "\     'name': 'rust',
-      "\     'cmdline': ['rust-analyzer'],
-      "\     'filetypes': ['rust'],
-      "\     'project_root_files': ['Cargo.toml']
-      "\   }
-      "\ ]
-
-" If you want :UltiSnipsEdit to split your window.
+"If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-node
 autocmd FileType python UltiSnipsAddFiletypes django
 autocmd FileType handlebars UltiSnipsAddFiletypes html
@@ -496,9 +443,10 @@ autocmd BufReadPost,BufNewFile *.vue setlocal filetype=vue
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             NERDTree mappings                              "
+"                            NERDTree mappings                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <silent> <C-n> :NERDTreeToggle<CR>
+map <silent> <C-f> :NERDTreeFind<CR>
 
 function! s:CloseIfOnlyControlWinLeft()
   if winnr("$") != 1
@@ -513,67 +461,22 @@ endfunction
 augroup CloseIfOnlyControlWinLeft
   au!
   au BufEnter * call s:CloseIfOnlyControlWinLeft()
-  "autocmd bufenter * if (winnr("$") == bufwinnr("__vista__")) | q | endif
-  "au BufEnter * if winnr("$") == 1 && vista#sidebar#IsOpen() | execute "normal! :q!\<CR>" | endif
   au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-  "au BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 Syntastic                                  "
+"                       Asynchronous Linting Engine                         "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"Syntastic
-""" ### Switching to Async Linting Engine!
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatusLineFlag()}
-"set statusline+=%*
-"let g:syntastic_always_populate_loc_list=0
-"let g:syntastic_auto_loc_list=0
-"let g:syntastic_check_on_open=0
-"let g:syntastic_check_on_wq=0
-"map <leader>st :SyntasticToggleMode<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                        Asynchronous Linting Engine                         "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ale_fixers = {
-      "\   'javascript': ['eslint'],
-      "\   'rust': ['rustfmt'],
-"\}
-"let g:ale_linter_aliases = {'vue': ['css', 'javascript']}
 "" Set this setting in vimrc if you want to fix files automatically on save.
 "" This is off by default.
 set completeopt=menu,menuone,preview,noselect,noinsert "prevent insertion bug
 let g:ale_completion_enabled = 0
-"let g:ale_fix_on_save = 1
-"let g:ale_sign_column_always = 0
 let g:ale_sign_error = '!'
 let g:ale_sign_warning = ''
-"let g:ale_set_highlights = 0
-"let g:airline#extensions#ale#enabled = 0
 let g:ale_lint_on_enter = 0
-"let g:ale_open_list = 0
-"let g:ale_set_quickfix = 1
-"nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
-"nmap <silent> <leader>an <Plug>(ale_next_wrap)
-"nmap <silent> <leader>af <Plug>(ale_fix)
-"nmap <silent> <leader>ad <Plug>(ale_go_to_definition)
-"let g:ale_echo_msg_error_str = ''
 let g:ale_echo_msg_error_str = '!'
 let g:ale_echo_msg_warning_str = ''
 let g:ale_echo_msg_format = '%severity% [%linter%]: %s'
-"let g:ale_lint_on_text_changed = 'normal'
-""let g:ale_set_quickfix = 1
-"let g:ale_fixers.javascript = ['eslint']
-"let g:ale_fixers.vue = ['eslint']
-"let g:ale_fixers.cpp = ['clangtidy']
-"let g:ale_fix_on_save = 1
-"highlight ALEErrorSign ctermbg=None
-"highlight ALEWarningSign ctermbg=None
-"highlight clear ALEErrorSign
-"highlight clear ALEWarningSign
 let g:ale_linters={
 \  'rust': ['cargo', 'analyzer'],
 \  'javascript': ['tsserver', 'eslint'],
@@ -594,36 +497,23 @@ let g:ale_pattern_options = {
       \}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"let g:ale_linters={'rust': ['rustc']}
-"let g:ale_rust_cargo_use_check=1
 let g:ale_fixers = {
       \   '*':      ['remove_trailing_lines', 'trim_whitespace'],
       \  'elixir':  ['mix_format'],
       \}
 
-"let g:ale_elixir_elixir_ls_release='~/.elixir-ls/release'
-
-"Node Runtime
-":set runtimepath^=~/.vim/bundle/node
-":set runtimepath^=~/.vim/bundle/vim-erlang-runtime/
-":set runtimepath^=~/.vim/bundle/vim-erlang-omnicomplete/
-
-
-"delimitMate
-"let delimitMate_expand_cr=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                          FZF Configuration entry                           "
+"                         FZF Configuration entry                           "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"fzf fuzzy search
-"set rtp+=~/.vim/bundle/fzf.vim
+" fzf fuzzy search
 let g:rg_command = '
       \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
       \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
       \ -g "!{.git,node_modules,vendor,priv,_build,target}/*" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
-" Likewise, Files command with preview window
+"Likewise, Files command with preview window
 
 command! -bang -nargs=? -complete=dir GitFiles
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
@@ -637,39 +527,15 @@ map <leader>fb :Buffers<CR>
 map <leader>fs :Snippets<CR>
 
 
-"IndentationGuides
+" IndentationGuides
 let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_auto_colors = 0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=4
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=4
 map <leader>ng :IndentLinesToggle<CR>
 
-
-"indentline conf
-"set list lcs=tab:\│\
+" indentline conf
+" set list lcs=tab:\│\
 let g:indentLine_char = '│'
-
-"Javascript
-"augroup javascript_folding
-"au!
-"au FileType javascript setlocal foldmethod=syntax
-"au FileType jsx setlocal foldmethod=syntax
-"augroup END
-"Async js Formatting
-"autocmd BufWritePost *.js AsyncRun -post=checktime eslint --fix %
-"autocmd BufWritePost *.jsx AsyncRun -post=checktime eslint --fix %
-
-" Load all plugins now.
-" Plugins need to be added to runtimepath before helptags can be generated.
-"packloadall
-" Load all of the helptags now, after plugins have been loaded.
-" All messages and errors will be ignored.
-"silent! helptags ALL
-
-"ctrl_p ignore dirs
-"let g:ctrlp_custom_ignore='node_modules\|DS_Store\|git\|_build\|deps\|priv\|target'
-
-"jsx in js
-"let g:jsx_ext_required=0
 
 "Vim GUI stuff
 if has("gui_running")
@@ -678,42 +544,41 @@ if has("gui_running")
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
-  "colorscheme gruvbox
 endif
 
 "Statusline
-"set laststatus=2
+" set laststatus=2
 set statusline=
-"set statusline+=%-3.3n\   "buffer number
+" set statusline+=%-3.3n\   "buffer number
 set statusline+=%f\       "filename
-"set statusline+=%h%m%r%w  "status flags
+" set statusline+=%h%m%r%w  "status flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] "file type
 set statusline+=%=        "right align remainder
-"set statusline+=0x%-8B    "character value
-"set statusline+=%-14(%l,%c%V%) "line, character
-"set statusline+=%<%P            "file position
+" set statusline+=0x%-8B    "character value
+" set statusline+=%-14(%l,%c%V%) "line, character
+" set statusline+=%<%P            "file position
 
-"GoyoToggle
+" GoyoToggle
 map <leader>gy :Goyo<CR>
 
-"Vim-Minimap
-"let g:minimap_toggle='<leader>mt'
-"let g:minimap_highlight='QuickFixLine'
+" Vim-Minimap
+" let g:minimap_toggle='<leader>mt'
+" let g:minimap_highlight='QuickFixLine'
 
-"alchemist elixir doc
+" alchemist elixir doc
 au filetype elixir nmap <leader>ef :call alchemist#exdef()<CR>
 au filetype elixir nmap <leader>mf :MixFormat<CR>
 let g:alchemist#elixir_erlang_src='~/.local/share/elixir/src'
 
 "Interactive GQL window config
-"map <leader>gq :GQLGraphiQL<CR>
-"map <leader>ge :GQLExit<CR>
-"map <leader>gi :GQLExecuteUnderCursor<CR>
-"map <leader>gr :GQLRunInteractiveQuery<CR>
-"let g:gql_endpoint = "localhost:4000/graphql"
+" map <leader>gq :GQLGraphiQL<CR>
+" map <leader>ge :GQLExit<CR>
+" map <leader>gi :GQLExecuteUnderCursor<CR>
+" map <leader>gr :GQLRunInteractiveQuery<CR>
+" let g:gql_endpoint = #localhost:4000/graphql#
 
 """""""""""""""
-"  GitGutter  "
+" GitGutter  "
 """""""""""""""
 let g:gitgutter_sign_added='┃'
 let g:gitgutter_sign_modified='┃'
@@ -722,40 +587,24 @@ let g:gitgutter_sign_removed_first_line='◥'
 let g:gitgutter_sign_modified_removed='◢'
 
 set shortmess+=c
-"let g:lsc_server_commands = {'dart': 'dart_language_server', 'rust': 'rust-analyzer', 'c': 'clangd', 'c++': 'clangd'}
-"let g:lsc_server_commands = {'dart': 'dart_language_server', 'c': 'clangd', 'c++': 'clangd'}
-"let g:lsc_server_commands = {'dart': 'dart_language_server'}
 
+""""""""""
+" Rust   "
 """""""""""
-"  Rust   "
-"""""""""""
-
-"let g:racer_cmd = "/home/harryk/.cargo/bin/racer"
-"let g:racer_experimental_completer = 1
-"au FileType rust nmap <leader>rf <Plug>(rust-def)
-"au FileType rust nmap <leader>rs <Plug>(rust-def-split)
-"au FileType rust nmap <leader>rx <Plug>(rust-def-vertical)
-"au FileType rust nmap <leader>rd <Plug>(rust-doc)
-"au FileType rust nmap <leader>rp :RustPlay<CR>
 au FileType rust nmap <leader>rr :RustRun<CR>
 au FileType rust nmap <leader>rt :RustTest<CR>
-"au FileType rust nmap <leader>rr :CocCommand rust-analyzer.run<CR>
 au FileType rust nmap <leader>rs :CocCommand rust-analyzer.syntaxTree<CR>
 au FileType rust nmap <leader>rg :CocCommand rust-analyzer.collectGarbage<CR>
-"au FileType rust nmap <leader>rf :Format<CR>
-"au FileType rust nmap <leader>rs <Plug>(rust-def-split)
-"au FileType rust nmap <leader>rx <Plug>(rust-def-vertical)
-"au FileType rust nmap <leader>rd <Plug>(rust-doc)
 
 """"""""""""""
-"  PlantUML  "
+" PlantUML  "
 """"""""""""""
 au filetype plantuml silent! IndentLinesDisable
 
 
-""""""""""""
-"  Golang  "
-""""""""""""
+"""""""""""
+" Golang  "
+"""""""""""
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 nmap <leader>glt :GoTestFunc<CR>
@@ -763,42 +612,30 @@ nmap <leader>gli :GoImplements<CR>
 nmap <leader>glr :GoRun<CR>
 nmap <leader>glb :GoBuild<CR>
 " Completion
-au filetype go inoremap <buffer> . .<C-x><C-o>
+"au filetype go inoremap <buffer> . .<C-x><C-o>
 
-""""""""""""""""""
-"  VimInspector  "
-""""""""""""""""""
+"""""""""""""""""
+" VimInspector  "
+"""""""""""""""""
 let g:vimspector_enable_mappings = 'HUMAN'
 
-""""""""""""""
-"  Prettier  "
-""""""""""""""
-
-"let g:prettier#exec_cmd_async = 1
-"nmap <Leader>py <Plug>(Prettier)
-"let g:prettier#autoformat = 0
-"let g:prettier#quickfix_enabled = 0
-"autocmd BufWritePre *.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.yaml,*.html PrettierAsync
-"autocmd BufWritePre,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-"
-"
 """""""""""""""""""""""""
-"  Conquer on Complete  "
+" Conquer on Complete  "
 """""""""""""""""""""""""
 
-" Some servers have issues with backup files, see #649.
+"Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
 
-" Give more space for displaying messages.
-" set cmdheight=2
+"Give more space for displaying messages.
+"set cmdheight=2
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
+"Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+"delays and poor user experience.
 set updatetime=300
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
+"Always show the signcolumn, otherwise it would shift the text each time
+"diagnostics appear/become resolved.
 if has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
@@ -806,34 +643,38 @@ else
   set signcolumn=yes
 endif
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
+"https://www.reddit.com/r/neovim/comments/weydql/cocvim_switched_to_custom_popup_menu_how_to/
+"Use tab for trigger completion with characters ahead and navigate.
+"NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+"other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackSpace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+"Make <CR> to accept selected completion item or notify coc.nvim to format
+"<C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackSpace() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+  return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
+" function! CheckBackspace() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction
+
+"Deprecated!
+"https://www.reddit.com/r/neovim/comments/weydql/cocvim_switched_to_custom_popup_menu_how_to/
+"
+"Use <c-space> to trigger completion.
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
 nmap <leader>cd <Plug>(coc-definition)
@@ -848,8 +689,8 @@ nmap <leader>cfs <Plug>(coc-format-selected)
 
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
+"Always show the signcolumn, otherwise it would shift the text each time
+"diagnostics appear/become resolved.
 "set signcolumn=yes
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -862,19 +703,20 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight the symbol and its references when holding the cursor.
+"Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Symbol renaming.
+"Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 function! CocSearchCommand()
-   execute 'CocSearch '.expand("<cword>")
- endfunction
+  "execute 'CocSearch '.expand(#<cword>#)
+  execute 'CocSearch '.expand("<cword>")
+endfunction
 
-" Symbol Renaming via grep
+"Symbol Renaming via grep
 nmap <leader>rnn :call CocSearchCommand()<CR>
 
-" Formatting selected code.
+"Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
@@ -886,60 +728,52 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
+"Applying codeAction to the selected region.
+"Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Apply AutoFix to problem on the current line.
+"Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Add `:Format` command to format current buffer.
+"Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
-" Add `:Fold` command to fold current buffer.
+"Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-" Add `:OR` command for organize imports of the current buffer.
+"Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"Add (Neo)Vim's native statusline support.
+"NOTE: Please see `:h coc-status` for integrations with external plugins that
+"provide custom statusline: lightline.vim, vim-airline.
+"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
 """""""""""
-"  Bazel  "
+" Bazel  "
 """""""""""
 "nmap <leader>bb :Bazel build src/build-all<CR>
 "nmap <leader>br :Bazel run   src/build-all<CR>
 "nmap <leader>bt :Bazel test --test_output all --verbose_failures test/main-test <CR>
 "nmap <leader>bc :Bazel clean --async<CR>
 
-"""""""""""""""""""""
-"  Language Server  "
-"""""""""""""""""""""
-"nmap <leader>lr  :LSClientFindReferences<CR>
-"nmap <leader>lrh :LSClientShowHover<CR>
-"nmap <leader>li  :LSClientFindImplementations<CR>
-"nmap <leader>ld  :LSClientGoToDefinition<CR>
-"nmap <leader>lds :LSClientGoToDefinitionSplit<CR>
-
 """""""""""""""
-"  Vim-vista  "
+" Vim-vista  "
 """""""""""""""
-" How each level is indented and what to prepend.
-" This could make the display more compact or more spacious.
-" e.g., more compact: ["▸ ", ""]
-" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
+"How each level is indented and what to prepend.
+"This could make the display more compact or more spacious.
+"e.g., more compact: [#▸ #, ##]
+"Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
-" Executive used when opening vista sidebar without specifying it.
-" See all the avaliable executives via `:echo g:vista#executives`.
+"Executive used when opening vista sidebar without specifying it.
+"See all the avaliable executives via `:echo g:vista#executives`.
 "let g:vista_default_executive = 'coc'
 
-" Set the executive for some filetypes explicitly. Use the explicit executive
-" instead of the default one for these filetypes when using `:Vista` without
-" specifying the executive.
+"Set the executive for some filetypes explicitly. Use the explicit executive
+"instead of the default one for these filetypes when using `:Vista` without
+"specifying the executive.
 let g:vista_executive_for = {
       \ 'cpp'     : 'coc',
       \ 'python'  : 'coc',
@@ -952,42 +786,42 @@ let g:vista_executive_for = {
       \ 'omlet'   : 'coc'
       \ }
 
-" Declare the command including the executable and options used to generate ctags output
-" for some certain filetypes.The file path will be appened to your custom command.
-" For example:
+"Declare the command including the executable and options used to generate ctags output
+"for some certain filetypes.The file path will be appened to your custom command.
+"For example:
 let g:vista_ctags_cmd = {
       \ 'haskell': 'hasktags -x -o - -c',
       \ }
 
-" To enable fzf's preview window set g:vista_fzf_preview.
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-" For example:
+"To enable fzf's preview window set g:vista_fzf_preview.
+"The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+"For example:
 let g:vista_fzf_preview = ['right:100%']
-" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+"Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
 let g:vista_sidebar_width = 30
 let g:vista_stay_on_open = 0
-"let g:vista_sidebar_position = "vertical topleft"
+"let g:vista_sidebar_position = #vertical topleft#
 
-" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+"The default icons can't be suitable for all the filetypes, you can extend it as you wish.
 "let g:vista#renderer#icons = {
-      "\   "function": "\uf794",
-      "\   "variable": "\uf71b",
+      "\   #function#: #\uf794#,
+      "\   #variable#: #\uf71b#,
       "\  }
 
 map <silent> <C-x> :Vista!!<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Terminal integration                             "
+"                            Terminal integration                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 map <silent> <C-t> :belowright term<CR>
 
 """"""""""""""""""
-"  Vim markdown  "
+" Vim markdown  "
 """"""""""""""""""
 "Disable weird underscore highlighting
-"syn match markdownIgnore "\$x_i\$"
+"syn match markdownIgnore #\$x_i\$#
 hi link markdownError Normal
 
 function FindCursorPopUp()
@@ -1023,70 +857,79 @@ nnoremap <expr> <c-d> ScrollPopUp(1) ? '<esc>' : '<c-d>'
 nnoremap <expr> <c-a> ScrollPopUp(0) ? '<esc>' : '<c-a>'
 
 """""""""""""""""""""
-"  Predictive Text  "
+" Predictive Text  "
 """""""""""""""""""""
 
-"let g:predictive#dict_path="~/.vim/bundle/vim-predictive/dict_sample/"
+"let g:predictive#dict_path=#~/.vim/bundle/vim-predictive/dict_sample/#
 
 """""""""""""""""
-"  Color Coded  "
+" Color Coded  "
 """""""""""""""""
 let g:lsp_cxx_hl_use_text_props = 1
 
-" Expensive to load this
-let g:color_coded_enabled = 1
+"Expensive to load this
+let g:color_coded_enabled = 0
 let g:color_coded_filetypes = ['c', 'cpp', 'objc', 'hpp']
 
 """""""""""
-"  SLime  "
+" SLime  "
 """""""""""
 "let g:slime_target = "tmux"
 "
 
-let g:opamshare = substitute(system('opam var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim/"
-set rtp+="~/.opam/default/share/ocp-indent/vim"
-set rtp+="~/.opam/default/lib"
-set rtp+="~/.opam/default/lib/TCSLib"
+function LoadOcaml()
+  echom "LoadOcaml..."
+  let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+  execute "set rtp+=" . g:opamshare . "/merlin/vim/"
+  set rtp+="~/.opam/default/share/ocp-indent/vim"
+  set rtp+="~/.opam/default/lib"
+  set rtp+="~/.opam/default/lib/TCSLib"
 
-" === slows down startup!
-if has("neovim") != 0
+  " === slows down startup!
+  if has("neovim") != 0
 
-  " ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
-  let s:opam_share_dir = system("opam config var share")
-  let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
+    " #" added by OPAM user-setup for vim / base #" 93ee63e278bdfc07d1139a748ed3fff2 #" you can edit, but keep this line
+    let s:opam_share_dir = system("opam config var share")
+    let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
 
-  let s:opam_configuration = {}
+    let s:opam_configuration = {}
 
-  function! OpamConfOcpIndent()
-    execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
-  endfunction
-  let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
+    function! OpamConfOcpIndent()
+      execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
+    endfunction
+    let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
 
-  function! OpamConfOcpIndex()
-    execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
-  endfunction
-  let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
+    function! OpamConfOcpIndex()
+      execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
+    endfunction
+    let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
 
-  function! OpamConfMerlin()
-    let l:dir = s:opam_share_dir . "/merlin/vim"
-    execute "set rtp+=" . l:dir
-  endfunction
-  let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+    function! OpamConfMerlin()
+      let l:dir = s:opam_share_dir . "/merlin/vim"
+      execute "set rtp+=" . l:dir
+    endfunction
+    let s:opam_configuration['merlin'] = function('OpamConfMerlin')
 
-  let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
-  let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
-  let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
-  for tool in s:opam_packages
-    " Respect package order (merlin should be after ocp-index)
-    if count(s:opam_available_tools, tool) > 0
-      call s:opam_configuration[tool]()
+    let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
+    let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
+    let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
+    for tool in s:opam_packages
+      " Respect package order (merlin should be after ocp-index)
+      if count(s:opam_available_tools, tool) > 0
+        call s:opam_configuration[tool]()
+      endif
+    endfor
+    " #" end of OPAM user-setup addition for vim / base #" keep this line
+    " #" added by OPAM user-setup for vim / ocp-indent #" 275b0634fd60a9c582dda2d0de07599f #" you can edit, but keep this line
+    if count(s:opam_available_tools,"ocp-indent") == 0
+      source #/Users/harrykwakuloba/.opam/default/share/ocp-indent/vim/indent/ocaml.vim#
     endif
-  endfor
-  " ## end of OPAM user-setup addition for vim / base ## keep this line
-  " ## added by OPAM user-setup for vim / ocp-indent ## 275b0634fd60a9c582dda2d0de07599f ## you can edit, but keep this line
-  if count(s:opam_available_tools,"ocp-indent") == 0
-    source "/Users/harrykwakuloba/.opam/default/share/ocp-indent/vim/indent/ocaml.vim"
+    " #" end of OPAM user-setup addition for vim / ocp-indent #" keep this line
   endif
-  " ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line
-endif
+endfunction
+
+"""""""""""""
+"  Context  "
+"""""""""""""
+let g:context_max_height = 4
+

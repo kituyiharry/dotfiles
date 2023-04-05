@@ -104,6 +104,11 @@ _G.packer_plugins = {
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["copilot.vim"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/copilot.vim",
+    url = "https://github.com/github/copilot.vim"
+  },
   ["csv.vim"] = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/csv.vim",
@@ -150,6 +155,11 @@ _G.packer_plugins = {
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
+  ["lspkind.nvim"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    url = "https://github.com/onsails/lspkind.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -159,6 +169,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["neodev.nvim"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
   },
   nerdcommenter = {
     loaded = true,
@@ -174,6 +189,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -205,6 +230,11 @@ _G.packer_plugins = {
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["rust-tools.nvim"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
+    url = "https://github.com/simrat39/rust-tools.nvim"
+  },
   tabular = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/tabular",
@@ -219,6 +249,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/ultisnips",
     url = "https://github.com/SirVer/ultisnips"
+  },
+  ["venn.nvim"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/venn.nvim",
+    url = "https://github.com/jbyuki/venn.nvim"
   },
   ["vim-airline"] = {
     loaded = true,

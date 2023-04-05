@@ -155,6 +155,6 @@ vim.cmd([[
 
   set signcolumn=yes
 
-  autocmd BufWritePre * :%s/\s\+$//e
+  set concealcursor-=n
 
 ]])

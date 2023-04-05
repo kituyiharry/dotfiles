@@ -84,6 +84,16 @@ return require('packer').startup(function(use)
   use('mhinz/vim-startify')
   use('junegunn/goyo.vim')
   use('fatih/vim-go', { run = ':GoUpdateBinaries' })
+  use('onsails/lspkind.nvim')
+  use('github/copilot.vim')
+  use('jbyuki/venn.nvim')
+  use('simrat39/rust-tools.nvim') -- tools
+  use('mfussenegger/nvim-dap')
+
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use "folke/neodev.nvim"
+
+
 
   -- You can alias plugin names
 end)

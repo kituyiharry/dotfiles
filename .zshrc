@@ -1,3 +1,4 @@
+#zmodload zsh/zprof
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -108,6 +109,7 @@ plugins=(git fzf shrink-path)
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+export PATH="/usr/local/lib/lua/:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/readline/lib"
 export LDFLAGS="$LDFLAGS -L/opt/homebrew/opt/zlib/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
@@ -193,12 +195,14 @@ export FZF_COMPLETION_OPTS='+c -x'
 # - See the source code (completion.{bash,zsh}) for the details.
 # - ag only lists files, so we use with-dir script to augment the output
 _fzf_compgen_path() {
-  ag -g "" "$1" | with-dir "$1"
+  #ag -g "" "$1" | with-dir "$1"
+  ag -g "" "$1" # | with-dir "$1"
 }
 
 # Use ag to generate the list for directory completion
 _fzf_compgen_dir() {
-  ag -g "" "$1" | only-dir "$1"
+  #ag -g "" "$1" | only-dir "$1"
+  ag -g "" "$1" # | only-dir "$1"
 }
 
 alias suroot='sudo -E -s'
@@ -216,24 +220,26 @@ source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export GOPATH="/Users/harrykwakuloba/go"
-export GOBIN="/Users/harrykwakuloba/go/bin"
+export GOPATH="/opt/homebrew/opt/go@1.17"
+export GOBIN="$GOPATH/bin"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="/opt/homebrew/anaconda3/bin/:$PATH"
 export PATH="$GOBIN:$PATH"
 export PATH="/Users/harrykwakuloba/.gem/ruby/3.1.0/bin:$PATH"
 export PATH="$GOPATH:$PATH"
+export PATH="$PATH"
 
 # opam configuration
 test -r /Users/harrykwakuloba/.opam/opam-init/init.zsh && . /Users/harrykwakuloba/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+#[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 #export TERM=xterm-256color-italic.terminfo
 #
 export PKG_CONFIG_PATH="/opt/homebrew/Cellar/ncurses/6.2/lib/pkgconfig/"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/opt/zlib/lib/pkgconfig/"
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/lib/pkgconfig/"
 
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -242,7 +248,7 @@ if [ -f '/Users/harrykwakuloba/Developer/Triage/gcloud-cli/google-cloud-sdk/path
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/harrykwakuloba/Developer/Triage/gcloud-cli/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/harrykwakuloba/Developer/Triage/gcloud-cli/google-cloud-sdk/completion.zsh.inc'; fi
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -259,3 +265,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH="/opt/homebrew/opt/mongodb-community@5.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
+#zprof

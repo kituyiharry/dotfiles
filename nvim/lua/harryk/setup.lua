@@ -1,26 +1,25 @@
 function SetupUltisnips()
   -- Ultisnips
-  vim.g.UltiSnipsUsePythonVersion=3
-  vim.g.UltiSnipsExpandTrigger="<c-a>"
-  vim.g.UltiSnipsJumpForwardTrigger="<c-F>"
-  vim.g.UltiSnipsJumpBackwardTrigger="<c-B>"
-  vim.g.UltiSnipsListSnippets="<c-t>"
+  vim.g.UltiSnipsUsePythonVersion = 3
+  vim.g.UltiSnipsExpandTrigger = "<c-a>"
+  vim.g.UltiSnipsJumpForwardTrigger = "<c-F>"
+  vim.g.UltiSnipsJumpBackwardTrigger = "<c-B>"
+  vim.g.UltiSnipsListSnippets = "<c-t>"
   -- If you want :UltiSnipsEdit to split your window.
-  vim.g.UltiSnipsEditSplit="vertical"
+  vim.g.UltiSnipsEditSplit = "vertical"
   vim.cmd [[
   let g:UltiSnipsSnippetDirectories=["Ultisnips", "vim-snippets", "~/.vim/bundle/Ultisnips", "~/.vim/bundle/vim-snippets"]
   ]]
 end
 
-
 function SetupAirline(theme)
   local th = theme or 'fruit_punch'
-  vim.g.airline_theme=th
-  vim.g.airline_powerline_fonts=1
+  vim.g.airline_theme = th
+  vim.g.airline_powerline_fonts = 1
   -- Enable the list of buffers
   -- Show just the filename
-  vim.g.airline_left_sep=''
-  vim.g.airline_right_sep=''
+  vim.g.airline_left_sep = ''
+  vim.g.airline_right_sep = ''
   -- set the CN (column number) symbol:
   vim.cmd([[
   let g:airline#extensions#tabline#enabled = 1
@@ -50,13 +49,13 @@ function SetupStartify()
 end
 
 function SetupLSP()
-  vim.g.go_def_mode='gopls'
-  vim.g.go_info_mode='gopls'
-  vim.api.nvim_create_autocmd("BufWritePost", {
-    callback = function()
-        vim.lsp.buf.format()
-    end
-  })
+  vim.g.go_def_mode = 'gopls'
+  vim.g.go_info_mode = 'gopls'
+  --vim.api.nvim_create_autocmd("BufWritePost", {
+  --callback = function()
+  --vim.lsp.buf.format()
+  --end
+  --})
 end
 
 function Setup(config)
