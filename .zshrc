@@ -121,8 +121,9 @@ export CPPFLAGS="$CPPFLAGS -I/opt/homebrew/opt/readline/include"
 # export CPPFLAGS="$CPPFLAGS:-I/opt/homebrew/opt/llvm/include"
 # export CPPFLAGS="$CPPFLAGS:-I/opt/homebrew/opt/llvm/include/clang-c"
 # export CFLAGS="$CPPFLAGS"
-export DOCKER_HOST="ssh://harrykwakuloba@unix:///Users/harrykwakuloba/.docker/run/docker-cli-api.sock"
-export DOCKER_HOST="unix:///var/run/docker.sock"
+#export DOCKER_HOST="ssh://harrykwakuloba@unix:///Users/harrykwakuloba/.docker/run/docker-cli-api.sock"
+export DOCKER_HOST="unix:///Users/harrykwakuloba/.docker/run/docker.sock"
+#export DOCKER_HOST="unix:///var/run/docker.sock"
 
 
 #export PYENV_ROOT="$HOME/.pyenv"
