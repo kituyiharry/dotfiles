@@ -58,12 +58,18 @@ function SetupLSP()
   --})
 end
 
+
+function SetupVista()
+  vim.g.vista_default_executive = 'nvim_lsp'
+end
+
 function Setup(config)
   SetupIndentline()
   SetupGitGutter()
   SetupAirline(config.theme)
   SetupUltisnips()
   SetupStartify()
+  SetupVista()
   SetupLSP()
 end
 

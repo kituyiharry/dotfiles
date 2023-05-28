@@ -80,7 +80,14 @@ return require('packer').startup(function(use)
   use('liuchengxu/vista.vim')
   use('dart-lang/dart-vim-plugin')
 
-  use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' }
+  use {'stevearc/dressing.nvim'}
+
+  use { 'akinsho/flutter-tools.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
+    }
+  }
   use('mhinz/vim-startify')
   use('junegunn/goyo.vim')
   use('fatih/vim-go', { run = ':GoUpdateBinaries' })
@@ -88,11 +95,23 @@ return require('packer').startup(function(use)
   use('github/copilot.vim')
   use('jbyuki/venn.nvim')
   use('simrat39/rust-tools.nvim') -- tools
+
+  -- Debugging
   use('mfussenegger/nvim-dap')
+  use 'leoluz/nvim-dap-go'
+  use 'theHamsta/nvim-dap-virtual-text'
+  use 'nvim-telescope/telescope-dap.nvim'
 
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
   use "folke/neodev.nvim"
 
+  use {
+    "microsoft/vscode-js-debug",
+    opt = true,
+    run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+  }
+  use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
+  use { "ziglang/zig.vim" }
 
 
   -- You can alias plugin names

@@ -157,4 +157,7 @@ vim.cmd([[
 
   set concealcursor-=n
 
+  " hide winseparator highlight
+  highlight WinSeparator guibg=None
+
 ]])
