@@ -9,7 +9,7 @@ return require('packer').startup(function(use)
 
   -- Configure plugins in after/{...}.lua
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    'nvim-telescope/telescope.nvim', tag = '0.1.4',
     -- or                          , branch = '0.1.x',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
@@ -22,7 +22,8 @@ return require('packer').startup(function(use)
   use({ "ellisonleao/gruvbox.nvim", as = 'gruvbox',
     config = function()
       vim.cmd [[colorscheme gruvbox]]
-    end })
+    end
+  })
 
   -- Treesitter
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
@@ -92,27 +93,30 @@ return require('packer').startup(function(use)
   use('junegunn/goyo.vim')
   use('fatih/vim-go', { run = ':GoUpdateBinaries' })
   use('onsails/lspkind.nvim')
-  use('github/copilot.vim')
+  use('github/copilot.vim') -- <- weirdo
   use('jbyuki/venn.nvim')
   use('simrat39/rust-tools.nvim') -- tools
 
   -- Debugging
-  use('mfussenegger/nvim-dap')
-  use 'leoluz/nvim-dap-go'
+  use 'mfussenegger/nvim-dap'
   use 'theHamsta/nvim-dap-virtual-text'
   use 'nvim-telescope/telescope-dap.nvim'
 
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
   use "folke/neodev.nvim"
 
+  use "RRethy/vim-illuminate"
+  use "DNLHC/glance.nvim"
+
   use {
     "microsoft/vscode-js-debug",
     opt = true,
-    run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+    run = "git clean -xfd && git checkout package-lock.json && npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
   }
   use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
+  use 'leoluz/nvim-dap-go'
   use { "ziglang/zig.vim" }
-
+  use { "nvim-neotest/nvim-nio" }
 
   -- You can alias plugin names
 end)

@@ -51,13 +51,12 @@ end
 function SetupLSP()
   vim.g.go_def_mode = 'gopls'
   vim.g.go_info_mode = 'gopls'
-  --vim.api.nvim_create_autocmd("BufWritePost", {
-  --callback = function()
-  --vim.lsp.buf.format()
-  --end
-  --})
+  -- vim.api.nvim_create_autocmd("BufWritePost", {
+  --   callback = function()
+  --     --vim.lsp.buf.format()
+  --   end
+  -- })
 end
-
 
 function SetupVista()
   vim.g.vista_default_executive = 'nvim_lsp'

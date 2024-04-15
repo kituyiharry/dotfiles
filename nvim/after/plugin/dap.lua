@@ -33,7 +33,7 @@ for _, language in ipairs({ "typescript", "javascript" }) do
       type = "pwa-node",
       request = "attach",
       name = "Attach",
-      processId = require'dap.utils'.pick_process,
+      processId = require 'dap.utils'.pick_process,
       cwd = "${workspaceFolder}",
     }
   }
@@ -80,7 +80,7 @@ function FlutterDebug()
     type = "executable",
     -- As of this writing, this functionality is open for review in https://github.com/flutter/flutter/pull/91802
     command = "flutter",
-    args = {"debug_adapter"}
+    args = { "debug_adapter" }
   }
   dap.configurations.dart = {
     {
@@ -92,7 +92,7 @@ function FlutterDebug()
       -- The nvim-dap plugin populates this variable with the editor's current working directory
       cwd = "${workspaceFolder}",
       -- This gets forwarded to the Flutter CLI tool, substitute `linux` for whatever device you wish to launch
-      toolArgs = {"-d", "macos"}
+      toolArgs = { "-d", "macos" }
     }
   }
   dap.configurations.dart = dap.configurations.dart
@@ -104,106 +104,69 @@ dap.configurations.rust = dap.configurations.cpp
 dap.configurations.zig = dap.configurations.cpp
 
 -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
--- dap.configurations.go = {
---   {
---     type = "delve",
---     name = "Debug",
---     request = "launch",
---     program = "${file}"
---   },
---   {
---     type = "delve",
---     name = "Debug test", -- configuration for debugging test files
---     request = "launch",
---     mode = "test",
---     program = "${file}"
---   },
---   -- works with go.mod packages and sub packages 
---   {
---     type = "delve",
---     name = "Debug test (go.mod)",
---     request = "launch",
---     mode = "test",
---     program = "./${relativeFileDirname}"
---   }
--- }
--- 
---  dap.adapters.delve = {
---     type = "server",
---     host = "127.0.0.1",
---     port = 38697,
---   }
+--dap.configurations.go = {
+--{
+--type = "delve",
+--name = "Debug",
+--request = "launch",
+--program = "${file}"
+--},
+--{
+--type = "delve",
+--name = "Debug test", -- configuration for debugging test files
+--request = "launch",
+--mode = "test",
+--program = "${file}"
+--},
+---- works with go.mod packages and sub packages
+--{
+--type = "delve",
+--name = "Debug test (go.mod)",
+--request = "launch",
+--mode = "test",
+--program = "./${relativeFileDirname}"
+--}
+--}
+
+--dap.adapters.delve = {
+--type = "server",
+--host = "127.0.0.1",
+--port = 38697,
+--}
 
 ---golang
 require('dap-go').setup(
   {
-  -- Additional dap configurations can be added.
-  -- dap_configurations accepts a list of tables where each entry
-  -- represents a dap configuration. For more details do:
-  -- :help dap-configuration
-  dap_configurations = {
-    {
-      -- Must be "go" or it will be ignored by the plugin
-      type = "go",
-      name = "Attach remote",
-      mode = "remote",
-      request = "attach",
-      showLog = true,
-			trace = "log",
-			logOutput = "rpc",
-      remotePath = "",
-      cwd = vim.fn.getcwd(),
+    -- Additional dap configurations can be added.
+    -- dap_configurations accepts a list of tables where each entry
+    -- represents a dap configuration. For more details do:
+    -- :help dap-configuration
+    dap_configurations = {
+      {
+        -- Must be "go" or it will be ignored by the plugin
+        type = "go",
+        name = "Attach remote",
+        mode = "remote",
+        request = "attach",
+        showLog = true,
+        trace = "log",
+        logOutput = "rpc",
+        remotePath = "",
+        cwd = vim.fn.getcwd(),
+      },
     },
-  },
-  -- delve configurations
-  delve = {
-    -- time to wait for delve to initialize the debug session.
-    -- default to 20 seconds
-    initialize_timeout_sec = 7,
-    -- a string that defines the port to start delve debugger.
-    -- default to string "${port}" which instructs nvim-dap
-    -- to start the process in a random available port
-    --port = "${port}"
-    host = "127.0.0.1",
-    port = 38697
-  },
-})
+    -- delve configurations
+    delve = {
+      -- time to wait for delve to initialize the debug session.
+      -- default to 20 seconds
+      initialize_timeout_sec = 7,
+      --a string that defines the port to start delve debugger.
+      --default to string "${port}" which instructs nvim-dap
+      --to start the process in a random available port
+      --port = "${port}"
+      host = "127.0.0.1",
+      port = 38697
+    },
+  })
 
-require("nvim-dap-virtual-text").setup()
-
-
--- Superseeded by dap-go
---
--- dap.adapters.delve = {
---   type = 'server',
---   port = '${port}',
---   executable = {
---     command = 'dlv',
---     args = {'dap', '-l', '127.0.0.1:${port}'},
---   }
--- }
--- 
--- -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
--- dap.configurations.go = {
---   {
---     type = "delve",
---     name = "Debug",
---     request = "launch",
---     program = "${file}"
---   },
---   {
---     type = "delve",
---     name = "Debug test", -- configuration for debugging test files
---     request = "launch",
---     mode = "test",
---     program = "${file}"
---   },
---   -- works with go.mod packages and sub packages 
---   {
---     type = "delve",
---     name = "Debug test (go.mod)",
---     request = "launch",
---     mode = "test",
---     program = "./${relativeFileDirname}"
---   }
--- }
+require("nvim-dap-virtual-text").setup({})

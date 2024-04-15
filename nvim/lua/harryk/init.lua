@@ -137,7 +137,7 @@ vim.cmd([[
   let g:hybrid_termtrans=1
 
   "highlight current column
-  set colorcolumn=76
+  set colorcolumn=80
   set cursorline
 
   "https://vi.stackexchange.com/a/13336
@@ -158,6 +158,9 @@ vim.cmd([[
   set concealcursor-=n
 
   " hide winseparator highlight
-  highlight WinSeparator guibg=None
+  highlight WinSeparator guibg=None ctermbg=None
+  highlight FloatBorder guibg=None ctermbg=None
+
+  nmap <leader>sb :windo set scrollbind!<CR>
 
 ]])

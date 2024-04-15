@@ -4,18 +4,18 @@ lsp.preset('recommended')
 lsp.setup()
 
 
-lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  --'sumneko_lua',
-  'lua_ls',
-  --'rust_analyzer',
-  'gopls',
-  'ocamllsp',
-  'elixirls',
-  'erlangls',
-  'pyright',
-})
+-- lsp.ensure_installed({
+--   'tsserver',
+--   'eslint',
+--   --'sumneko_lua',
+--   'lua_ls',
+--   --'rust_analyzer',
+--   'gopls',
+--   'ocamllsp',
+--   'elixirls',
+--   'erlangls',
+--   'pyright',
+-- })
 
 vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "None", ctermfg = "None" })
 
@@ -25,11 +25,13 @@ require("neodev").setup({
   -- add any options here, or leave empty to use the default settings
 })
 
+local lspconfig = require("lspconfig")
+
 --require 'lspconfig'.sumneko_lua.setup {
-require 'lspconfig'.lua_ls.setup {
+lspconfig.lua_ls.setup {
   -- ... other configs
   -- on_attach = on_attach,
-  --capabilities = capabilities,
+  -- capabilities = capabilities,
   settings = {
     Lua = {
       completion = {
@@ -89,8 +91,8 @@ local lspkind = require('lspkind')
 cmp.setup {
   formatting = {
     format = lspkind.cmp_format({
-      mode = 'symbol', -- show only symbol annotations
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      mode = 'symbol',       -- show only symbol annotations
+      maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 
       -- The function below will be called before any actual modifications from lspkind
@@ -104,7 +106,6 @@ cmp.setup {
 }
 
 local lsp_on_attach = (function(client, bufnr)
-
   vim.api.nvim_create_autocmd("CursorHold", {
     buffer = bufnr,
     callback = function()
@@ -122,56 +123,20 @@ local lsp_on_attach = (function(client, bufnr)
 
   local opts = { buffer = bufnr, remap = false }
 
-  --if client.name == "eslint" then
-    --print("Killing ESLint")
-    -- vim.cmd.LspStop('eslint')
-    --return
-  --end
-
-  -- local cap = client.resolved_capabilities
-
-  if client.server_capabilities.documentHighlightProvider then
-    local group = vim.api.nvim_create_augroup("LSPDocumentHighlight", {})
-    -- vim.opt.updatetime = 1000
-    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-      buffer   = bufnr,
-      group    = group,
-      callback = function()
-        vim.lsp.buf.document_highlight()
-      end,
-    })
-    vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-      buffer   = bufnr,
-      group    = group,
-      callback = function()
-        vim.lsp.buf.clear_references()
-      end,
-    })
-  end
-
-  --client.server_capabilities.document_formatting = true
-  --if client.server_capabilities.document_formatting then
-    --local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
-    --vim.api.nvim_create_autocmd("BufWritePre", {
-      --pattern = "*",
-      --callback = function()
-        --vim.lsp.buf.format(nil)
-      --end,
-      --group = au_lsp,
-    --})
-  --end
-
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "<leader>cd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "<leader>ck", vim.lsp.buf.declaration, opts)
   vim.keymap.set("n", "<leader>cp", vim.lsp.buf.implementation, opts)
+  vim.keymap.set("n", "<leader>ct", vim.lsp.buf.type_definition, opts)
+  vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, opts)
+  vim.keymap.set("n", "<leader>cw", vim.lsp.buf.workspace_symbol, opts)
+
+
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "<leader>an", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "<leader>ap", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "<leader>qf", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
@@ -369,6 +334,7 @@ vim.diagnostic.config({
   signs = true,
 })
 
+-- lua things
 vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
 
 -- highlight references on Cursor events below
