@@ -195,6 +195,11 @@ _G.packer_plugins = {
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/nerdtree",
     url = "https://github.com/preservim/nerdtree"
   },
+  ["nvim-bqf"] = {
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/nvim-bqf",
+    url = "https://github.com/kevinhwang91/nvim-bqf"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -259,6 +264,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["qf.nvim"] = {
+    config = { "\27LJ\2\n4\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\aqf\frequire\0" },
+    loaded = true,
+    path = "/Users/harrykwakuloba/.local/share/nvim/site/pack/packer/start/qf.nvim",
+    url = "https://github.com/ten3roberts/qf.nvim"
   },
   ["rust-tools.nvim"] = {
     loaded = true,
@@ -363,6 +374,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for gruvbox]], true)
 try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\24colorscheme gruvbox\bcmd\bvim\0", "config", "gruvbox")
 time([[Config for gruvbox]], false)
+-- Config for: qf.nvim
+time([[Config for qf.nvim]], true)
+try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\aqf\frequire\0", "config", "qf.nvim")
+time([[Config for qf.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

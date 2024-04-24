@@ -161,6 +161,14 @@ vim.cmd([[
   highlight WinSeparator guibg=None ctermbg=None
   highlight FloatBorder guibg=None ctermbg=None
 
+  function! GetSynStack()
+		for id in synstack(line("."), col("."))
+		  echo synIDattr(id, "name")
+		endfor
+  endfunction
+
+  " nmap <leader>sp :call <SID>SynStack()<CR>
+  nmap <leader>sp :call g:GetSynStack()<CR>
   nmap <leader>sb :windo set scrollbind!<CR>
 
 ]])

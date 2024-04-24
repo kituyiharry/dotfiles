@@ -4,9 +4,8 @@
 --" An action can be a reference to a function that processes selected lines
 -- Add a way to set crtl-q to select files into the quickfix
 vim.cmd([[
-
     function! s:build_quickfix_list(lines)
-      call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1 }'))
+      call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": v:val, "end_lnum": v:val }'))
       copen
       cc
     endfunction

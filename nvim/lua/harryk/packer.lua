@@ -118,5 +118,14 @@ return require('packer').startup(function(use)
   use { "ziglang/zig.vim" }
   use { "nvim-neotest/nvim-nio" }
 
+  --use {'kevinhwang91/nvim-bqf', ft = 'qf'}
+  use {'kevinhwang91/nvim-bqf'}
+  use {
+    'ten3roberts/qf.nvim',
+    config = function()
+      require'qf'.setup{}
+    end
+  }
+
   -- You can alias plugin names
 end)
