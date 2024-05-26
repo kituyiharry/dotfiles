@@ -171,4 +171,6 @@ vim.cmd([[
   nmap <leader>sp :call g:GetSynStack()<CR>
   nmap <leader>sb :windo set scrollbind!<CR>
 
+  let g:vista_sidebar_width=50
+
 ]])

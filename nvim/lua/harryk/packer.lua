@@ -93,7 +93,7 @@ return require('packer').startup(function(use)
   use('junegunn/goyo.vim')
   use('fatih/vim-go', { run = ':GoUpdateBinaries' })
   use('onsails/lspkind.nvim')
-  use('github/copilot.vim') -- <- weirdo
+  --use('github/copilot.vim') -- <- weirdo
   use('jbyuki/venn.nvim')
   use('simrat39/rust-tools.nvim') -- tools
 
@@ -117,6 +117,31 @@ return require('packer').startup(function(use)
   use 'leoluz/nvim-dap-go'
   use { "ziglang/zig.vim" }
   use { "nvim-neotest/nvim-nio" }
+  use ({
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter"
+    },
+    config = function()
+    -- get neotest namespace (api call creates or returns namespace)
+    local neotest_ns = vim.api.nvim_create_namespace("neotest")
+    vim.diagnostic.config({
+      virtual_text = {
+        format = function(diagnostic)
+          local message =
+            diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+          return message
+        end,
+      },
+    }, neotest_ns)
+  end,
+  })
+
+  use 'rouge8/neotest-rust'
+  use 'nvim-neotest/neotest-go'
 
   --use {'kevinhwang91/nvim-bqf', ft = 'qf'}
   use {'kevinhwang91/nvim-bqf'}
