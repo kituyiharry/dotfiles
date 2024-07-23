@@ -27,6 +27,19 @@ require("neodev").setup({
 
 local lspconfig = require("lspconfig")
 
+-- vim.g.rustaceanvim = {
+--   server = {
+--     cmd = function()
+--       local mason_registry = require('mason-registry')
+--       local ra_binary = mason_registry.is_installed('rust-analyzer') 
+--       -- This may need to be tweaked, depending on the operating system.
+--       and mason_registry.get_package('rust-analyzer'):get_install_path() .. "/rust-analyzer"
+--       or "rust-analyzer"
+--       return { ra_binary } -- You can add args to the list, such as '--log-file'
+--     end,
+--   },
+-- }
+
 --require 'lspconfig'.sumneko_lua.setup {
 lspconfig.lua_ls.setup {
   -- ... other configs
@@ -55,6 +68,7 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<leader>ap'] = cmp.mapping.select_prev_item(cmp_select),
   ['<leader>an'] = cmp.mapping.select_next_item(cmp_select),
+  ['<cr>'] = cmp.mapping.confirm({ select = true }),
 })
 
 lsp.setup_nvim_cmp({ mapping = cmp_mappings })
@@ -90,6 +104,7 @@ local lspkind = require('lspkind')
 
 cmp.setup {
   formatting = {
+    expandable_indicator = true,
     format = lspkind.cmp_format({
       mode = 'symbol',       -- show only symbol annotations
       maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
@@ -321,15 +336,14 @@ local rust_opts = {
 
 require('rust-tools').setup(rust_opts)
 
-
-
 vim.diagnostic.config({
   underline = true,
   virtual_text = {
-    source = "always", -- Or "if_many"
+    source = true, -- Or "if_many"
   },
   float = {
-    source = "always", -- Or "if_many"
+    source = true, -- Or "if_many"
+    border = "single",
   },
   signs = true,
 })

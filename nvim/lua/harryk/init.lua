@@ -1,7 +1,50 @@
 -- print("Hallo from harryk")
-require('luasnip.loaders.from_snipmate').lazy_load()
+local should_profile = os.getenv("NVIM_PROFILE")
+
+local function toggle_profile()
+  local prof = require("profile")
+  if prof.is_recording() then
+    prof.stop()
+    --vim.ui.input({ prompt = "Save profile to:", completion = "file", default = "profile.json" }, function(filename)
+      --if filename then
+        vim.cmd [[ :echom "done profiling!" ]]
+        prof.export("/Users/harrykwakuloba/.config/nvim/profile.prof")
+        --vim.notify(string.format("Wrote %s", filename))
+      --end
+    --end)
+  else
+    prof.start("*")
+  end
+end
+
+
+if should_profile then
+  vim.cmd [[ :echom "profiling...." ]]
+  require("profile").instrument_autocmds()
+  if should_profile:lower():match("^start") then
+    require("profile").start("*")
+    
+    local timer = vim.uv.new_timer()
+    local timer2 = vim.loop.new_timer()
+    timer2:start(10000, 0, vim.schedule_wrap(function()
+      toggle_profile()
+      vim.api.nvim_command('echomsg "completing"')
+    end))
+    timer:start(10000, 0, vim.schedule_wrap(function()
+      toggle_profile()
+      vim.api.nvim_command('echomsg "completing"')
+    end))
+
+  else
+    require("profile").instrument("*")
+  end
+end
+vim.keymap.set("", "<f1>", toggle_profile)
+
+--require('luasnip.loaders.from_snipmate').lazy_load()
 
 vim.cmd([[
+
   set nocompatible
   filetype plugin on
   filetype on
@@ -173,4 +216,6 @@ vim.cmd([[
 
   let g:vista_sidebar_width=50
 
+
 ]])
+

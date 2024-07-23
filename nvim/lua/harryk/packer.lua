@@ -111,7 +111,7 @@ return require('packer').startup(function(use)
   use {
     "microsoft/vscode-js-debug",
     opt = true,
-    run = "git clean -xfd && git checkout package-lock.json && npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+    run = "git clean -xfd && git reset --hard && git checkout package-lock.json && npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
   }
   use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
   use 'leoluz/nvim-dap-go'
@@ -131,8 +131,7 @@ return require('packer').startup(function(use)
     vim.diagnostic.config({
       virtual_text = {
         format = function(diagnostic)
-          local message =
-            diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+          local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
           return message
         end,
       },
@@ -141,6 +140,7 @@ return require('packer').startup(function(use)
   })
 
   use 'rouge8/neotest-rust'
+  --use 'mrcjkb/rustaceanvim'
   use 'nvim-neotest/neotest-go'
 
   --use {'kevinhwang91/nvim-bqf', ft = 'qf'}
@@ -151,6 +151,9 @@ return require('packer').startup(function(use)
       require'qf'.setup{}
     end
   }
+
+  --use 'tweekmonster/startuptime.vim'
+  use 'stevearc/profile.nvim'
 
   -- You can alias plugin names
 end)

@@ -41,7 +41,7 @@ end
 
 dap.adapters.lldb = {
   type = 'executable',
-  command = '/opt/homebrew/opt/llvm/bin/lldb-vscode', -- adjust as needed, must be absolute path
+  command = '/opt/homebrew/opt/llvm/bin/lldb-dap', -- adjust as needed, must be absolute path
   name = 'lldb'
 }
 
@@ -55,8 +55,8 @@ dap.configurations.cpp = {
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
-    args = {},
-
+    args = {
+    },
     -- 💀
     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
     --
@@ -100,8 +100,45 @@ end
 
 -- If you want to use this for Rust and C, add something like this:
 dap.configurations.c = dap.configurations.cpp
-dap.configurations.rust = dap.configurations.cpp
 dap.configurations.zig = dap.configurations.cpp
+
+dap.configurations.rust = {
+  {
+    name = 'Launch',
+    type = 'lldb',
+    request = 'launch',
+    program = "${workspaceFolder}/target/debug/${workspaceFolderBasename}",
+    stopAtEntry = true,
+    --program = function()
+      --return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    --end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {
+    },
+    -- ... the previous config goes here ...,
+    initCommands = function()
+      -- Find out where to look for the pretty printer Python module
+      local rustc_sysroot = vim.fn.trim(vim.fn.system('rustc --print sysroot'))
+
+      local script_import = 'command script import "' .. rustc_sysroot .. '/lib/rustlib/etc/lldb_lookup.py"'
+      local commands_file = rustc_sysroot .. '/lib/rustlib/etc/lldb_commands'
+
+      local commands = {}
+      local file = io.open(commands_file, 'r')
+      if file then
+        for line in file:lines() do
+          table.insert(commands, line)
+        end
+        file:close()
+      end
+      table.insert(commands, 1, script_import)
+
+      return commands
+    end,
+    -- ...,
+  },
+}
 
 -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
 --dap.configurations.go = {
