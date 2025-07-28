@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "help", "vim", "ocaml", "elixir", "erlang", "go", "typescript", "c", "cpp", "javascript", "lua", "rust" },
+  ensure_installed = { "vim", "ocaml", "elixir", "erlang", "go", "typescript", "c", "cpp", "javascript", "lua", "rust" },
 
   -- ....
   -- ignore_install = {},
@@ -64,3 +64,53 @@ require'treesitter-context'.setup{
 
 vim.keymap.set("n", [[<leader>tp]], [[:TSPlaygroundToggle<cr>]])
 vim.cmd(" highlight TreesitterContextSeparator ctermbg=None guibg=None")
+
+--vim.filetype.add {
+  --extension = {
+    --re = "reason",
+  --},
+--}
+
+
+-- Install grammar with nvim-treesitter
+--local list = require("nvim-treesitter.parsers").get_parser_configs()
+--list.reason = {
+  --install_info = {
+    --url = "https://github.com/reasonml-editor/tree-sitter-reason",
+    --files = { "src/parser.c", "src/scanner.c" },
+    --branch = "master",
+  --},
+--}
+
+-- Test my own custom parser for dune files
+
+--local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+--parser_config.bend = {
+  --install_info = {
+    --url = "https://github.com/HigherOrderCO/tree-sitter-bend",
+    --files = { "src/parser.c", "src/scanner.c" },
+    --branch = "main",
+  --},
+--}
+
+--vim.filetype.add({
+  --extension = {
+    --bend = "bend",
+  --},
+--})
+
+--vim.treesitter.language.register("bend", { "bend" })
+
+-- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+-- parser_config.dune = {
+--   install_info = {
+--     url = "~/Developer/Ocaml/neotest/tree-sitter-dune",
+--     files = { "src/parser.c", },
+--     branch = "main",
+--     generate_requires_npm = false,
+--     requires_generate_from_grammar = false,
+--   },
+--   filetype = "dune",
+-- }
+-- vim.api.nvim_command [[autocmd BufNewFile,BufRead dune-project setfiletype dune]]
+-- vim.api.nvim_command [[autocmd BufNewFile,BufRead dune         setfiletype dune]]

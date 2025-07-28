@@ -6,11 +6,11 @@ require("neotest").setup({
       },
       args = { "-count=1", "-timeout=60s" }
     }),
-    --require('rustaceanvim.neotest')({}),
-    require("neotest-rust")({
-        args = { "--no-capture" },
-        dap_adapter = "lldb",
-    }),
+    require('rustaceanvim.neotest')({}),
+    --require("neotest-rust")({
+        --args = { "--no-capture" },
+        --dap_adapter = "lldb",
+    --}),
   },
 })
 

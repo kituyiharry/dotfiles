@@ -39,6 +39,9 @@ if should_profile then
     require("profile").instrument("*")
   end
 end
+
+
+-- Use F1 key to stop profiling
 vim.keymap.set("", "<f1>", toggle_profile)
 
 --require('luasnip.loaders.from_snipmate').lazy_load()
@@ -47,6 +50,7 @@ vim.cmd([[
 
   set nocompatible
   filetype plugin on
+  filetype plugin indent on
   filetype on
   set relativenumber
   syntax on
@@ -75,7 +79,8 @@ vim.cmd([[
   "set UTF-8 encoding
   set enc=utf-8
   set fenc=utf-8
-  set termencoding=utf-8
+  " set termencoding=utf-8
+  " set tenc=utf-8
   "use intelligent indentation for C
   set smartindent
   set autoindent
@@ -85,11 +90,11 @@ vim.cmd([[
   set textwidth=80
   set formatoptions+=tcqrn1
   set formatprg=par\ jw76
-  set tabstop=2
-  set shiftwidth=2
-  set softtabstop=2
+  set tabstop=4
+  set shiftwidth=4
+  set softtabstop=4
   set expandtab
-  set noshiftround
+  set shiftround
   set autoindent
 
   "set autoindent noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
@@ -155,6 +160,7 @@ vim.cmd([[
   "
   "Remove trailing whitespaces
   " autocmd BufWritePre * :%s/\s\+$//e
+  autocmd FileType sml set indentexpr=
 
   "
   "Split characters

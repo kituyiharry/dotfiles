@@ -1,4 +1,5 @@
 vim.g.mapleader = ","
+-- // "n" normal, "v" visual, "i" insert
 vim.keymap.set("n", [[<leader><space>]], [[:let @/=''<cr>]])
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv'")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv'")

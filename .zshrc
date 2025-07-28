@@ -244,6 +244,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 #[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 #export TERM=xterm-256color-italic.terminfo
+export TERM=screen-256color
 #
 
 export PKG_CONFIG_PATH="/opt/homebrew/Cellar/ncurses/6.2/lib/pkgconfig/"
@@ -285,7 +286,9 @@ unset __conda_setup
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
 
 function frg {
   result=$(rg --ignore-case --color=always --line-number --no-heading "$@" |
@@ -833,3 +836,8 @@ else
     compdef _sg sg
 fi
 
+export MANPAGER='nvim +Man!'
+
+. "$HOME/.local/bin/env"
+
+export PATH="$PATH:/Users/harrykwakuloba/.modular/bin"

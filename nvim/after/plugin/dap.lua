@@ -9,35 +9,35 @@ vim.keymap.set("n", "<leader>dgt", ":lua require'dap'.step_out()<CR>")
 vim.keymap.set("n", "<leader>dgb", ":lua require'dap'.toggle_breakpoint()<CR>")
 vim.keymap.set("n", "<leader>dui", ":lua require'dapui'.toggle()<CR>")
 
-require("dap-vscode-js").setup({
-  -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
-  -- debugger_path = "(runtimedir)/site/pack/packer/opt/vscode-js-debug", -- Path to vscode-js-debug installation.
-  -- debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
-  adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
-  -- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
-  -- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
-  -- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
-})
+-- require("dap-vscode-js").setup({
+--   -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
+--   -- debugger_path = "(runtimedir)/site/pack/packer/opt/vscode-js-debug", -- Path to vscode-js-debug installation.
+--   -- debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+--   adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
+--   -- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
+--   -- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
+--   -- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
+-- })
 
-for _, language in ipairs({ "typescript", "javascript" }) do
-  require("dap").configurations[language] = {
-    -- ... -- see below
-    {
-      type = "pwa-node",
-      request = "launch",
-      name = "Launch file",
-      program = "${file}",
-      cwd = "${workspaceFolder}",
-    },
-    {
-      type = "pwa-node",
-      request = "attach",
-      name = "Attach",
-      processId = require 'dap.utils'.pick_process,
-      cwd = "${workspaceFolder}",
-    }
-  }
-end
+-- for _, language in ipairs({ "typescript", "javascript" }) do
+--   require("dap").configurations[language] = {
+--     -- ... -- see below
+--     {
+--       type = "pwa-node",
+--       request = "launch",
+--       name = "Launch file",
+--       program = "${file}",
+--       cwd = "${workspaceFolder}",
+--     },
+--     {
+--       type = "pwa-node",
+--       request = "attach",
+--       name = "Attach",
+--       processId = require 'dap.utils'.pick_process,
+--       cwd = "${workspaceFolder}",
+--     }
+--   }
+-- end
 
 dap.adapters.lldb = {
   type = 'executable',
@@ -75,28 +75,28 @@ dap.configurations.cpp = {
 -- Flutter and Dart
 -- But mostly flutter because dart ... ??
 
-function FlutterDebug()
-  dap.adapters.dart = {
-    type = "executable",
-    -- As of this writing, this functionality is open for review in https://github.com/flutter/flutter/pull/91802
-    command = "flutter",
-    args = { "debug_adapter" }
-  }
-  dap.configurations.dart = {
-    {
-      type = "dart",
-      request = "launch",
-      name = "Launch Flutter Program",
-      -- The nvim-dap plugin populates this variable with the filename of the current buffer
-      program = "${file}",
-      -- The nvim-dap plugin populates this variable with the editor's current working directory
-      cwd = "${workspaceFolder}",
-      -- This gets forwarded to the Flutter CLI tool, substitute `linux` for whatever device you wish to launch
-      toolArgs = { "-d", "macos" }
-    }
-  }
-  dap.configurations.dart = dap.configurations.dart
-end
+-- function FlutterDebug()
+--   dap.adapters.dart = {
+--     type = "executable",
+--     -- As of this writing, this functionality is open for review in https://github.com/flutter/flutter/pull/91802
+--     command = "flutter",
+--     args = { "debug_adapter" }
+--   }
+--   dap.configurations.dart = {
+--     {
+--       type = "dart",
+--       request = "launch",
+--       name = "Launch Dart Program",
+--       -- The nvim-dap plugin populates this variable with the filename of the current buffer
+--       program = "${file}",
+--       -- The nvim-dap plugin populates this variable with the editor's current working directory
+--       cwd = "${workspaceFolder}",
+--       -- This gets forwarded to the Flutter CLI tool, substitute `linux` for whatever device you wish to launch
+--       toolArgs = { "-d", "macos" }
+--     }
+--   }
+--   dap.configurations.dart = dap.configurations.dart
+-- end
 
 -- If you want to use this for Rust and C, add something like this:
 dap.configurations.c = dap.configurations.cpp
