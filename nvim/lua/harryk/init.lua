@@ -5,7 +5,8 @@ local function toggle_profile()
   local prof = require("profile")
   if prof.is_recording() then
     prof.stop()
-    --vim.ui.input({ prompt = "Save profile to:", completion = "file", default = "profile.json" }, function(filename)
+    --vim.ui.input({ prompt = "Save profile to:",
+    --completion = "file", default = "profile.json" }, function(filename)
       --if filename then
         vim.cmd [[ :echom "done profiling!" ]]
         prof.export("/Users/harrykwakuloba/.config/nvim/profile.prof")

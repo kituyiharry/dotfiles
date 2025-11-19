@@ -9,9 +9,7 @@ return require('packer').startup(function(use)
 
     -- Configure plugins in after/{...}.lua
     use {
-        'nvim-telescope/telescope.nvim', 
-                                        -- tag = '0.1.4',
-        -- or                          , branch = '0.1.x',
+        'nvim-telescope/telescope.nvim', -- tag = '0.1.4', or, branch = '0.1.x',
         requires = {{ 'nvim-lua/plenary.nvim' }}
     }
 
@@ -81,10 +79,10 @@ return require('packer').startup(function(use)
                 { path = "LazyVim", words = { "LazyVim" } },
                 -- Load the wezterm types when the `wezterm` module is required
                 -- Needs `justinsgithub/wezterm-types` to be installed
-                { path = "wezterm-types", mods = { "wezterm" } },
+                --{ path = "wezterm-types", mods = { "wezterm" } },
                 -- Load the xmake types when opening file named `xmake.lua`
                 -- Needs `LelouchHe/xmake-luals-addon` to be installed
-                { path = "xmake-luals-addon/library", files = { "xmake.lua" } },
+                --{ path = "xmake-luals-addon/library", files = { "xmake.lua" } },
             },
             -- This is the default
             enabled = function(root_dir)
@@ -195,23 +193,22 @@ return require('packer').startup(function(use)
 
     --use 'rouge8/neotest-rust'
     use 'mrcjkb/rustaceanvim'
-    use {
-        'cordx56/rustowl',
-        build = 'cd rustowl && cargo install --path . --locked',
-        lazy = false, -- This plugin is already lazy
-        opts = {
-            client = {
-                on_attach = function(_, buffer)
-                    vim.keymap.set('n', '<leader>o', function()
-                        require('rustowl').toggle(buffer)
-                    end, { buffer = buffer, desc = 'Toggle RustOwl' })
-                end
-            },
-        },
-    }
+    --use {
+        --'cordx56/rustowl',
+        --build = 'cd rustowl && cargo install --path . --locked',
+        --lazy = false, -- This plugin is already lazy
+        --opts = {
+            --client = {
+                --on_attach = function(_, buffer)
+                    --vim.keymap.set('n', '<leader>o', function()
+                        --require('rustowl').toggle(buffer)
+                    --end, { buffer = buffer, desc = 'Toggle RustOwl' })
+                --end
+            --},
+        --},
+    --}
 
     use 'nvim-neotest/neotest-go'
-    --use '~/Developer/Ocaml/neotest/neotest-go'
 
     --use {'kevinhwang91/nvim-bqf', ft = 'qf'}
     use {'kevinhwang91/nvim-bqf'}
@@ -221,6 +218,19 @@ return require('packer').startup(function(use)
             require'qf'.setup{}
         end
     }
+
+    --track todo and fixmes
+    use {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    }
+
+    use { 'hackwaly/ocaml-dap' }
 
     --use 'tweekmonster/startuptime.vim'
     --use 'stevearc/profile.nvim'

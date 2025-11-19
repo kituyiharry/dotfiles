@@ -102,6 +102,32 @@ dap.configurations.cpp = {
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.zig = dap.configurations.cpp
 
+dap.adapters.ocamlearlybird = {
+  type = "executable",
+  command = "ocamlearlybird",
+  name = "ocamlearlybird",
+  args = {"debug"}
+}
+
+dap.configurations.ocaml = {
+  {
+    name = "ocaml",
+    type = "ocamlearlybird",
+    request = "launch",
+    stopOnEntry = true,
+    console = "integratedTerminal",
+    yieldSteps = 4096,
+    cwd = "${workspaceFolder}",
+    --arguments = {"compile",
+                 --"../../examples/test.inu",
+                 --"-o",
+                 --"_build/a.out",
+                 --"-v"},
+    program = "${workspaceFolder}/_build/default/bin/main.exe",
+    onlyDebugGlob = "<${workspaceFolder}/**/*>"
+  }
+}
+
 dap.configurations.rust = {
   {
     name = 'Launch',

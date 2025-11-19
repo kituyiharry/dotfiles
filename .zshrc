@@ -841,3 +841,4 @@ export MANPAGER='nvim +Man!'
 . "$HOME/.local/bin/env"
 
 export PATH="$PATH:/Users/harrykwakuloba/.modular/bin"
+export PATH="/Users/harrykwakuloba/.pixi/bin:$PATH"

@@ -35,11 +35,13 @@ local lsp = require('lsp-zero')
 --vim.cmd("hi FloatBorder guibg=#32302F guifg=#F2E2C3")
 vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "None", ctermfg = "None" })
 
-local lspconfig = require("lspconfig")
+--local lspconfig = require("lspconfig")
+local lspconfig = vim.lsp
 
-lspconfig.rust_analyzer = function()
-  return true
-end
+--lspconfig.rust_analyzer = function()
+lspconfig.config('rust_analyzer', {
+    enable=false
+})
 
 vim.g.rustaceanvim = {
   tools = {
@@ -86,24 +88,25 @@ vim.g.rustaceanvim = {
 }
 
 -- add bend lsp as custom
-local configs = require 'lspconfig.configs'
+--local configs = require 'lspconfig.configs'
+local configs = vim.lsp.config
 if not configs.bend then
   configs.bend = {
     default_config = {
       cmd       = { 'bend-language-server' },
       --root_dir = lspconfig.util.root_pattern('.git'),
-      root_dir  = lspconfig.util.root_pattern("*.bend"),
+      --root_dir  = lspconfig.util.root_pattern("*.bend"),
       filetypes = { 'bend' },
     },
   }
 end
-lspconfig.bend.setup {}
+--lspconfig.bend.setup {}
 
 if not configs.mojo then 
     --local builtin = require('telescope.builtin')
     configs.mojo = {
         default_config = {
-            cmd = { 'mojo-lsp-server' },
+            cmd = { 'pixi', 'run', 'mojo-lsp-server' },
             filetypes = { 'mojo' },
             root_dir = function(fname)
                 --builtin.git_files
@@ -120,30 +123,31 @@ if not configs.mojo then
         },
     }
 end
-lspconfig.mojo.setup {}
+
+--lspconfig.config.mojo.setup {}
 
 --require 'lspconfig'.sumneko_lua.setup {
-lspconfig.lua_ls.setup {
+--lspconfig.config.lua_ls.setup {
   -- ... other configs
   -- on_attach = on_attach,
   -- capabilities = capabilities,
-  settings = {
-    Lua = {
-      completion = {
-        callSnippet = "Replace"
-      },
-      diagnostics = {
-        globals = { 'vim' }
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-        }
-      }
-    }
-  }
-}
+  --settings = {
+    --Lua = {
+      --completion = {
+        --callSnippet = "Replace"
+      --},
+      --diagnostics = {
+        --globals = { 'vim' }
+      --},
+      --workspace = {
+        --library = {
+          --[vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          --[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+        --}
+      --}
+    --}
+  --}
+--}
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
